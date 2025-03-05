@@ -1,34 +1,39 @@
-"use client";
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
+const events = [
+    { id:1, title: 'event 1as asd asdasd', date: '2025-04-01'},
+    { id:2,title: 'event 2', date: '2025-04-02'}
+]
 
-import * as React from "react";
-import { Calendar } from "@/components/ui/calendar";
+
+const handleDateClick = (arg:any) => {
+    console.log(arg.event);
+}
 
 export function CalendarScheduler() {
-  const [selectedDates, setSelectedDates] = React.useState<Date[]>([
+    return (
+        <div className='p-5'>
 
-  ]);
+            <FullCalendar
 
-  console.log(selectedDates);
-  return (
-    <div className="p-4">
-      <Calendar
-        mode="multiple"
-        selected={selectedDates}
-        // onSelect={(days) => setSelectedDates(days ?? [])} // Updates selected dates
-        className="rounded-md border"
-      />
-      <div className="mt-4 p-2 border rounded">
-        <h3 className="font-semibold">Scheduled Dates:</h3>
-        <ul>
-          {selectedDates.length > 0 ? (
-            selectedDates.map((date, index) => (
-              <li key={index}>{date.toDateString()}</li>
-            ))
-          ) : (
-            <li className="text-gray-500">No dates selected</li>
-          )}
-        </ul>
-      </div>
-    </div>
-  );
+                plugins={[dayGridPlugin, interactionPlugin]}
+                initialView='dayGridMonth'
+                
+                events={events}
+                eventClick={handleDateClick}
+                eventContent={renderEventContent}
+            />
+        </div>
+    )
+}
+
+// a custom render function
+function renderEventContent(eventInfo: any) {
+    return (
+        <>
+            <b>{eventInfo.timeText}</b>
+            <i>{eventInfo.event.title}</i>
+        </>
+    )
 }
