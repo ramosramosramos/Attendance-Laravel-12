@@ -9,10 +9,10 @@ import { useState } from 'react'
 export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
 
     const [open,setOpen] =useState<boolean>(false);
-    const [selectedSchedule,setSelectedSchedule] =useState<Schedule[]>([]);
+    const [selectedSchedule,setSelectedSchedule] =useState<Schedule | null>(null);
     const handleDateClick = (arg: any) => {
         setOpen(true);
-        setSelectedSchedule(arg.event);
+        setSelectedSchedule(arg.event as Schedule);
         console.log(selectedSchedule);
     }
 
@@ -26,13 +26,15 @@ export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
                     center: 'title',
                     right: ''
                 }}
+                height={'90vh'}
+
                 plugins={[dayGridPlugin, interactionPlugin]}
-                initialView='dayGridMonth'
+                // initialView='dayGridMonth'
                 events={schedules}
                 eventClick={handleDateClick}
 
             />
-            <ScheduleDrawer schedule ={selectedSchedule} open={open} onOpenChange={setOpen} />
+            {selectedSchedule && <ScheduleDrawer schedule={selectedSchedule} open={open} onOpenChange={setOpen} />}
         </div>
     )
 }

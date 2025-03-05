@@ -46,6 +46,6 @@ export interface Schedule {
     textColor: string;
     start_time: string;
     start_end: string;
-    data: string;
+    date: string;
     [key: string]: any;
 }

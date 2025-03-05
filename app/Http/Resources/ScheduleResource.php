@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,8 +23,9 @@ class ScheduleResource extends JsonResource
             'backgroundColor' => $this->backgroundColor,
             'textColor' => $this->textColor,
             'extendedProps' => [
-                'start_time' => $this->start_time,
-                'end_time' => $this->end_time,
+                'start_time' => Carbon::parse($this->start_time)->toDayDateTimeString(),
+                'end_time' =>  Carbon::parse($this->end_time)->toDayDateTimeString(),
+                'date' =>  Carbon::parse($this->date)->toFormattedDayDateString(),
             ],
             'date' => $this->date,
         ];
