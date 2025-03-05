@@ -1,3 +1,6 @@
+const ReactCompilerConfig = {
+    target: '18' // '17' | '18' | '19'
+ };
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import {
@@ -12,7 +15,13 @@ export default defineConfig({
             ssr: 'resources/js/ssr.jsx',
             refresh: true,
         }),
-        react(),
+        react({
+            babel: {
+              plugins: [
+                ["babel-plugin-react-compiler", ReactCompilerConfig],
+              ],
+            },
+          }),
         tailwindcss(),
     ],
     esbuild: {

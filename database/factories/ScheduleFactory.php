@@ -23,8 +23,8 @@ class ScheduleFactory extends Factory
         return [
             'user_id' => 1,
             'title' => fake()->sentence(3),
-            'borderColor' => fake()->randomElement(['gray','white',]),
-            'backgroundColor' => fake()->randomElement(['yellow','green','red','blue',]),
+            'borderColor' => fake()->randomElement(['gray','white','']),
+            'backgroundColor' => fake()->randomElement(['indigo','green','red','blue','']),
             'textColor' => 'white',
             'start_time' => Carbon::parse($date)->toDateTimeString(), // Combine date and time
             'end_time' => Carbon::parse($date)->addHours(2)->toDateTimeString(),
