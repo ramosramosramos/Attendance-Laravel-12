@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,15 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            // $table->
+            $table->foreignIdFor(User::class)->constrained('users')->cascadeOnDelete();
+            $table->string('title');
+            $table->text('backgroundColor')->nullable();
+            $table->text('borderColor')->nullable();
+            $table->text('textColor')->nullable();
+            $table->text('url')->nullable();
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->date('date');
             $table->timestamps();
         });
     }
