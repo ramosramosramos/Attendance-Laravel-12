@@ -19,10 +19,10 @@ return new class extends Migration
             $table->text('backgroundColor')->nullable();
             $table->text('borderColor')->nullable();
             $table->text('textColor')->nullable();
-            $table->text('url')->nullable();
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->date('date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -38,3 +38,14 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+export interface Schedule {
+    id: string;
+    title: string;
+    backgoundColor: string;
+    borderColor: string;
+    textColor: string;
+    start_time: string;
+    start_end: string;
+    data: string;
+    [key: string]: any;
+}

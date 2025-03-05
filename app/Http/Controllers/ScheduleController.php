@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schedule;
 use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
+use App\Http\Resources\ScheduleResource;
+use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
@@ -13,7 +14,20 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-       return inertia('schedule/index');
+
+        return inertia('schedule/index', [
+            'schedules' => ScheduleResource::collection($this->user()->schedules()->select([
+                'id',
+                'title',
+                'borderColor',
+                'backgroundColor',
+                'textColor',
+                'start_time',
+                'end_time',
+                'user_id',
+                'date',
+            ])->get()),
+        ]);
     }
 
     /**

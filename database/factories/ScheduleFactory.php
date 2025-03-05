@@ -17,19 +17,18 @@ class ScheduleFactory extends Factory
      */
     public function definition(): array
     {
-        $date = fake()->date(); // Generate a random date
-        $time = fake()->time('H:i:s'); // Generate a random time
+        $number = fake()->numberBetween(1,30);
+        $date = fake()->randomElement([now()->addDays($number)]); // Generate a random date
 
         return [
             'user_id' => 1,
-            'title' => fake()->sentence(3), // Generate a short title
-            'borderColor' => fake()->safeColorName(), // Use `safeColorName()` for realistic colors
-            'backgroundColor' => fake()->safeColorName(),
-            'textColor' => fake()->safeColorName(),
-            'start_time' => Carbon::parse("$date $time")->toDateTimeString(), // Combine date and time
-            'end_time' => Carbon::parse("$date $time")->addHours(2)->toDateTimeString(),
+            'title' => fake()->sentence(3),
+            'borderColor' => fake()->randomElement(['gray','white',]),
+            'backgroundColor' => fake()->randomElement(['yellow','green','red','blue',]),
+            'textColor' => 'white',
+            'start_time' => Carbon::parse($date)->toDateTimeString(), // Combine date and time
+            'end_time' => Carbon::parse($date)->addHours(2)->toDateTimeString(),
             'date' => $date, // Store only the date separately
         ];
     }
-
 }
