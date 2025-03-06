@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import { Schedule } from "@/types";
 import { ScheduleDrawer } from "../drawers/schedule-drawer";
-import React, { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import { EventClickArg, EventDropArg } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import { router } from "@inertiajs/react";

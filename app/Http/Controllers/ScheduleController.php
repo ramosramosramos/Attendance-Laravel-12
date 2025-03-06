@@ -50,7 +50,6 @@ class ScheduleController extends Controller
         Schedule::create($request->validated());
     }
 
-
     public function edit(Schedule $schedule)
     {
         return inertia('schedule/edit', ['schedule' => $schedule]);
@@ -63,14 +62,15 @@ class ScheduleController extends Controller
     {
         $schedule->update($request->validated());
     }
+
     public function drag(Request $request, Schedule $schedule)
     {
-        $validated  = $request->validate([
-            'date' => ['required', 'date']
+        $validated = $request->validate([
+            'date' => ['required', 'date'],
         ]);
         $schedule->update([
             'date' => Carbon::parse($validated['date'])->addDay()->toDateTime(),
-            'start_time' => Carbon::parse($validated['date'])->addDay()
+            'start_time' => Carbon::parse($validated['date'])->addDay(),
         ]);
     }
 

@@ -22,7 +22,7 @@ class StoreScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'numeric','exists:users,id'],
+            'user_id' => ['required', 'numeric', 'exists:users,id'],
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
             'borderColor' => ['nullable', 'string'],
