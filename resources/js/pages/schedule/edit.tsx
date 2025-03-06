@@ -70,7 +70,7 @@ export default function Edit({schedule}:Schedule) {
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
 
-                    <form onSubmit={handleSubmit} className=' p-5 grid grid-cols-2 gap-5'>
+                    <form onSubmit={handleSubmit} className='p-5 grid lg:grid-cols-2  gap-5'>
 
                         <section className='space-y-5'>
                             <div>
