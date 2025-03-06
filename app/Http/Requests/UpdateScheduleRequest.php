@@ -22,6 +22,7 @@ class UpdateScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['required', 'numeric','exists:users,id'],
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
             'borderColor' => ['nullable', 'string'],
@@ -31,6 +32,6 @@ class UpdateScheduleRequest extends FormRequest
             'end_time' => ['required', 'date', 'after:start_time'],
             'date' => ['required', 'date'],
         ];
-        
+
     }
 }

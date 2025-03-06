@@ -46,7 +46,7 @@ class ScheduleController extends Controller
      */
     public function store(StoreScheduleRequest $request)
     {
-        // dd(Carbon::parse($request->date)->toDate());
+
         Schedule::create($request->validated());
     }
 
@@ -63,7 +63,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        return inertia('schedule/edit',['schedule'=>$schedule]);
     }
 
     /**
@@ -71,14 +71,17 @@ class ScheduleController extends Controller
      */
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
-        //
+            $schedule->update($request->validated());
     }
     public function drag(Request $request, Schedule $schedule)
     {
         $validated  = $request->validate([
             'date' => ['required', 'date']
         ]);
-        $schedule->update(['date'=>Carbon::parse($validated['date'])->addDay()->toDateTime()] );
+        $schedule->update([
+            'date'=>Carbon::parse($validated['date'])->addDay()->toDateTime(),
+            'start_time'=>Carbon::parse($validated['date'])->addDay()
+            ] );
     }
 
     /**

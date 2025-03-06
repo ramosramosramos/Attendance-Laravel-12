@@ -13,7 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::resource('/schedules', ScheduleController::class);
+    Route::resource('/schedules', ScheduleController::class)->except(['update','destroy']);
+    Route::post('/schedules/{schedule}/update',[ScheduleController::class, 'update'])->name('schedules.update');
+    Route::post('/schedules/{schedule}/destroy',[ScheduleController::class, 'destroy'])->name('schedules.destroy');
     Route::post('/schedules/{schedule}/drag',[ScheduleController::class, 'drag'])->name('schedules.drag');
 });
 

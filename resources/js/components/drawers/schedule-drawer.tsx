@@ -13,10 +13,11 @@ import {
 } from "@/components/ui/drawer"
 import { Schedule } from "@/types";
 import { EventImpl } from "@fullcalendar/core/internal";
+import { useForm } from "@inertiajs/react";
 
 export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWithoutRef<typeof Drawer> & { schedule: Schedule | EventImpl }) {
 
-
+const form = useForm({});
     return (
         <Drawer {...props}>
 
@@ -38,7 +39,12 @@ export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWitho
                 </div>
                 <DrawerFooter className="pt-2  ">
                     <div className="flex  mb-5  gap-5 w-full">
-                        <Button variant={'default'}>
+                        <Button  variant={'default'} onClick={()=>{
+                            console.log(schedule.id);
+                            form.get(route('schedules.edit', { schedule: schedule.id }), { preserveScroll: true });
+
+
+                        }}>
                             Edit
                         </Button>
                         <Button variant={'destructive'}>

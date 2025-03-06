@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
-import { SharedData, type BreadcrumbItem } from '@/types';
+import { Schedule, SharedData, type BreadcrumbItem } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { toast } from 'sonner';
@@ -14,12 +14,12 @@ import { toast } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Create schedule',
-        href: route('schedules.create'),
+        title: 'Edit schedule',
+        href: route('schedules.edit',""),
     },
 ];
 
-interface FormCreate {
+interface FormEdit {
     title: string;
     user_id: number;
     description: string;
@@ -32,28 +32,28 @@ interface FormCreate {
     [key: string]: any;
     // :Date;
 }
-export default function Create() {
+export default function Edit({schedule}:Schedule) {
     const { user } = usePage<SharedData>().props.auth;
 
-    const { data, setData, post, processing, errors, reset, clearErrors } = useForm<FormCreate>({
-        title: '',
+    const { data, setData, post, processing, errors, reset, clearErrors } = useForm<FormEdit>({
+        title: schedule.title,
         user_id: user.id,
-        description: '',
-        start_time: '',
-        end_time: '',
-        date: '',
-        backgroundColor: '#8A2BE2',
-        borderColor: '#FAEBD7',
-        textColor: '#FAEBD7',
+        description: schedule.description,
+        start_time: schedule.start_time,
+        end_time: schedule.end_time,
+        date: schedule.start_time,
+        backgroundColor: schedule.backgroundColor,
+        borderColor: schedule.borderColor,
+        textColor: schedule.textColor,
     })
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('schedules.store'), {
+        post(route('schedules.update',schedule.id), {
             preserveScroll: true,
             showProgress:false,
             onSuccess: () => {
-                toast.success("Your new schedule has been successfully added.")
+                toast.success("Your schedule has been successfully save.")
                 setTimeout(() => {
                     router.get(route('schedules.index'));
                 }, 1000);
@@ -64,7 +64,7 @@ export default function Create() {
     }
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Schedule - Create" />
+            <Head title="Schedule - Edit" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 </div>
@@ -138,7 +138,7 @@ export default function Create() {
                                 <InputError message={errors.textColor} />
                             </div>
                         </section>
-                        <Button disabled={processing} className='max-w-[max-content]'>Add this new schedule</Button>
+                        <Button disabled={processing} className='max-w-[max-content]'>Save</Button>
                     </form>
 
                 </div>
