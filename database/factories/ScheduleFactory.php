@@ -17,14 +17,15 @@ class ScheduleFactory extends Factory
      */
     public function definition(): array
     {
-        $number = fake()->numberBetween(1,30);
+        $number = fake()->numberBetween(1, 30);
         $date = fake()->randomElement([now()->addDays($number)]); // Generate a random date
 
         return [
             'user_id' => 1,
-            'title' => fake()->sentence(3),
-            'borderColor' => fake()->randomElement(['gray','white','']),
-            'backgroundColor' => fake()->randomElement(['indigo','green','red','blue','']),
+            'title' => fake()->realText(20),
+            'description' => fake()->realText(50),
+            'borderColor' => fake()->randomElement(['gray', 'white', '']),
+            'backgroundColor' => fake()->randomElement(['indigo', 'green', 'red', 'blue', '']),
             'textColor' => 'white',
             'start_time' => Carbon::parse($date)->toDateTimeString(), // Combine date and time
             'end_time' => Carbon::parse($date)->addHours(2)->toDateTimeString(),

@@ -41,6 +41,7 @@ export interface User {
 export interface Schedule {
     id: string;
     title: string;
+    description:string;
     backgoundColor: string;
     borderColor: string;
     textColor: string;

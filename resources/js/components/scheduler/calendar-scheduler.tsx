@@ -13,7 +13,7 @@ export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
     const handleDateClick = (arg: any) => {
         setOpen(true);
         setSelectedSchedule(arg.event as Schedule);
-        console.log(selectedSchedule);
+
     }
 
 
@@ -21,7 +21,9 @@ export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
         <div className='p-5'>
 
             <FullCalendar
+
                 headerToolbar={{
+
                     left: 'prev,next today',
                     center: 'title',
                     right: ''
@@ -32,7 +34,6 @@ export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
                 // initialView='dayGridMonth'
                 events={schedules}
                 eventClick={handleDateClick}
-
             />
             {selectedSchedule && <ScheduleDrawer schedule={selectedSchedule} open={open} onOpenChange={setOpen} />}
         </div>

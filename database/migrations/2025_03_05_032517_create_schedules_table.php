@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained('users')->cascadeOnDelete();
             $table->string('title');
+            $table->text('description')->nullable();
             $table->text('backgroundColor')->nullable();
             $table->text('borderColor')->nullable();
             $table->text('textColor')->nullable();

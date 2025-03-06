@@ -19,6 +19,7 @@ class ScheduleController extends Controller
             'schedules' => ScheduleResource::collection($this->user()->schedules()->select([
                 'id',
                 'title',
+                'description',
                 'borderColor',
                 'backgroundColor',
                 'textColor',

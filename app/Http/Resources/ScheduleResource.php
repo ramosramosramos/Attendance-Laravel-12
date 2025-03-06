@@ -16,16 +16,18 @@ class ScheduleResource extends JsonResource
     public function toArray(Request $request): array
     {
         $this->withoutWrapping();
+
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'description' => $this->description,
             'borderColor' => $this->borderColor,
             'backgroundColor' => $this->backgroundColor,
             'textColor' => $this->textColor,
             'extendedProps' => [
                 'start_time' => Carbon::parse($this->start_time)->toDayDateTimeString(),
-                'end_time' =>  Carbon::parse($this->end_time)->toDayDateTimeString(),
-                'date' =>  Carbon::parse($this->date)->toFormattedDayDateString(),
+                'end_time' => Carbon::parse($this->end_time)->toDayDateTimeString(),
+                'date' => Carbon::parse($this->date)->toFormattedDayDateString(),
             ],
             'date' => $this->date,
         ];

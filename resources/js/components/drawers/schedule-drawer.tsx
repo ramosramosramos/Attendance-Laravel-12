@@ -16,7 +16,7 @@ import { Schedule } from "@/types";
 
 export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWithoutRef<typeof Drawer> & { schedule: Schedule }) {
 
-    console.log(schedule);
+
     return (
         <Drawer {...props}>
 
@@ -25,7 +25,7 @@ export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWitho
                 <DrawerHeader className="text-left">
                     <DrawerTitle>{schedule.title}</DrawerTitle>
                     <DrawerDescription>
-                        Make changes to your profile here. Click save when you're done.
+                        {schedule.extendedProps.description}
                     </DrawerDescription>
 
                 </DrawerHeader>
