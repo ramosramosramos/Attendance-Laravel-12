@@ -24,9 +24,9 @@ class ScheduleFactory extends Factory
             'user_id' => 1,
             'title' => fake()->realText(20),
             'description' => fake()->realText(50),
-            'borderColor' => fake()->randomElement(['gray', 'white', '']),
-            'backgroundColor' => fake()->randomElement(['indigo', 'green', 'red', 'blue', '']),
-            'textColor' => 'white',
+            'borderColor' => fake()->randomElement(['#ffffff59', '#ffffff', '']),
+            'backgroundColor' => fake()->randomElement(['#2200ff', '#0f3b0f', '#d5000f', '#23026e', '']),
+            'textColor' => '#ffffff',
             'start_time' => Carbon::parse($date)->toDateTimeString(), // Combine date and time
             'end_time' => Carbon::parse($date)->addHours(2)->toDateTimeString(),
             'date' => $date, // Store only the date separately
