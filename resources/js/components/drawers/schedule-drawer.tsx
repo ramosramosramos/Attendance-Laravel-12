@@ -10,7 +10,6 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerTitle,
-    DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Schedule } from "@/types";
 import { EventImpl } from "@fullcalendar/core/internal";

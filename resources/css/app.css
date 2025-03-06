@@ -157,3 +157,14 @@
         @apply bg-background text-foreground;
     }
 }
+
+.fc .fc-toolbar {
+    grid: flex;
+
+
+}
+.fc .fc-toolbar-chunk button{
+    background: var(--background);
+    margin: 5px;
+}
+

@@ -12,23 +12,33 @@ import { router, useForm } from '@inertiajs/react'
 export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
     const [open, setOpen] = useState<boolean>(false);
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule | EventImpl | null>(null);
-    const handleDateClick = (arg :EventClickArg) => {
+    const handleDateClick = (arg: EventClickArg) => {
         setOpen(true);
-        setSelectedSchedule(arg.event);
+        setSelectedSchedule(arg?.event);
 
     }
 
     const handleDrag = (arg: EventDropArg) => {
-        router.post(route('schedules.drag',arg.event.id),{date:arg.event.start},{preserveScroll:true});
+        router.post(route('schedules.drag', arg.event.id), { date: arg.event.start }, { preserveScroll: true });
     }
     return (
         <div className='p-5'>
             <FullCalendar
 
+                customButtons={{
 
+                    createButton: {
+                        text: "Custom Button",
+
+                        click: () => {
+                            alert("Custom button clicked!");
+                        },
+                    },
+
+                }}
                 headerToolbar={{
-
-                    left: 'prev,next today',
+                    start:'createButton',
+                    left: 'createButton prev next today',
                     right: 'title',
                     // right: ''
                 }}
