@@ -50,20 +50,10 @@ class ScheduleController extends Controller
         Schedule::create($request->validated());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Schedule $schedule)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Schedule $schedule)
     {
-        return inertia('schedule/edit',['schedule'=>$schedule]);
+        return inertia('schedule/edit', ['schedule' => $schedule]);
     }
 
     /**
@@ -71,7 +61,7 @@ class ScheduleController extends Controller
      */
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
-            $schedule->update($request->validated());
+        $schedule->update($request->validated());
     }
     public function drag(Request $request, Schedule $schedule)
     {
@@ -79,9 +69,9 @@ class ScheduleController extends Controller
             'date' => ['required', 'date']
         ]);
         $schedule->update([
-            'date'=>Carbon::parse($validated['date'])->addDay()->toDateTime(),
-            'start_time'=>Carbon::parse($validated['date'])->addDay()
-            ] );
+            'date' => Carbon::parse($validated['date'])->addDay()->toDateTime(),
+            'start_time' => Carbon::parse($validated['date'])->addDay()
+        ]);
     }
 
     /**
@@ -89,6 +79,6 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
     }
 }

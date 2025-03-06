@@ -1,59 +1,58 @@
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
-import { Schedule } from '@/types'
-import { ScheduleDrawer } from '../drawers/schedule-drawer'
-import { useState } from 'react'
-import { EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
-import { EventImpl } from '@fullcalendar/core/internal'
-import { router, useForm } from '@inertiajs/react'
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
+import { Schedule } from "@/types";
+import { ScheduleDrawer } from "../drawers/schedule-drawer";
+import React, { useState, createContext, useContext } from "react";
+import { EventClickArg, EventDropArg } from "@fullcalendar/core";
+import { EventImpl } from "@fullcalendar/core/internal";
+import { router } from "@inertiajs/react";
+import { CalendarContext } from "@/hooks/use-calendar-context";
 
 
+
+// Calendar component
 export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
-    const [open, setOpen] = useState<boolean>(false);
-    const [selectedSchedule, setSelectedSchedule] = useState<Schedule | EventImpl | null>(null);
-    const handleDateClick = (arg: EventClickArg) => {
-        setOpen(true);
-        setSelectedSchedule(arg?.event);
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectedSchedule, setSelectedSchedule] = useState<Schedule | EventImpl | null>(null);
 
-    }
+  const handleEventClick = (arg: EventClickArg) => {
+    setOpen(true);
+    setSelectedSchedule(arg.event);
+  };
 
-    const handleDrag = (arg: EventDropArg) => {
-        router.post(route('schedules.drag', arg.event.id), { date: arg.event.start }, { preserveScroll: true });
-    }
-    return (
-        <div className='p-5'>
-            <FullCalendar
+  const handleDrag = (arg: EventDropArg) => {
+    router.post(route("schedules.drag", arg.event.id), { date: arg.event.start }, { preserveScroll: true });
+  };
 
-                customButtons={{
+  return (
+    <CalendarContext.Provider value={{ open, setOpen }}>
+      <div className="p-5">
+        <FullCalendar
+          customButtons={{
+            createButton: {
+              text: "Add new schedule",
+              click: () => {
+                router.get(route("schedules.create"));
+              },
+            },
+          }}
+          headerToolbar={{
+            start: "createButton",
+            left: "createButton prev next today",
+            right: "title",
+          }}
+          editable
+          eventDrop={handleDrag}
+          height={"90vh"}
+          expandRows
+          plugins={[dayGridPlugin, interactionPlugin]}
+          events={schedules}
+          eventClick={handleEventClick}
+        />
 
-                    createButton: {
-                        text: "Add new schedule",
-
-                        click: () => {
-                            router.get(route('schedules.create'));
-                        },
-                    },
-
-                }}
-                headerToolbar={{
-                    start:'createButton',
-                    left: 'createButton prev next today',
-                    right: 'title',
-                    // right: ''
-                }}
-                editable
-                eventDrop={handleDrag}
-                height={'90vh'}
-                // contentHeight={200}
-                expandRows
-                plugins={[dayGridPlugin, interactionPlugin]}
-                // initialView='dayGridMonth'
-                events={schedules}
-                eventClick={handleDateClick}
-            />
-            {selectedSchedule && <ScheduleDrawer schedule={selectedSchedule} open={open} onOpenChange={setOpen} />}
-        </div>
-    )
+        {selectedSchedule && <ScheduleDrawer open={open} onOpenChange={setOpen} schedule={selectedSchedule} />}
+      </div>
+    </CalendarContext.Provider>
+  );
 }
-
