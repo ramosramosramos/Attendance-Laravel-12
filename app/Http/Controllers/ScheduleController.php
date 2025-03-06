@@ -38,7 +38,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('schedule/create');
     }
 
     /**
@@ -46,7 +46,8 @@ class ScheduleController extends Controller
      */
     public function store(StoreScheduleRequest $request)
     {
-        //
+        // dd(Carbon::parse($request->date)->toDate());
+        Schedule::create($request->validated());
     }
 
     /**

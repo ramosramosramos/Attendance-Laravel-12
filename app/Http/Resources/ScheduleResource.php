@@ -25,9 +25,9 @@ class ScheduleResource extends JsonResource
             'backgroundColor' => $this->backgroundColor,
             'textColor' => $this->textColor,
             'extendedProps' => [
-                'start_time' => $this->start_time,
-                'end_time' => $this->end_time,
-                'date' => $this->date,
+                'start_time' => Carbon::parse($this->start_time)->toDayDateTimeString(),
+                'end_time' =>Carbon::parse($this->start_time)->toDayDateTimeString(),
+                'date' => Carbon::parse($this->date)->toFormattedDateString(),
             ],
             'date' => $this->date,
         ];

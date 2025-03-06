@@ -11,7 +11,7 @@ class StoreScheduleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', 'numeric','exists:users,id'],
+            'title' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'borderColor' => ['nullable', 'string'],
+            'backgroundColor' => ['nullable', 'string'],
+            'textColor' => ['nullable', 'string'],
+            'start_time' => ['required', 'date', 'before:end_time'],
+            'end_time' => ['required', 'date', 'after:start_time'],
+            'date' => ['required', 'date'],
         ];
+
     }
 }

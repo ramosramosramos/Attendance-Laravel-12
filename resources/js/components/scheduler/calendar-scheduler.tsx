@@ -28,10 +28,10 @@ export function CalendarScheduler({ schedules }: { schedules: Schedule[] }) {
                 customButtons={{
 
                     createButton: {
-                        text: "Custom Button",
+                        text: "Add new schedule",
 
                         click: () => {
-                            alert("Custom button clicked!");
+                            router.get(route('schedules.create'));
                         },
                     },
 
