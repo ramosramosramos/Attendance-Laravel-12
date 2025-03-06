@@ -14,6 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::resource('/schedules', ScheduleController::class);
+    Route::post('/schedules/{schedule}/drag',[ScheduleController::class, 'drag'])->name('schedules.drag');
 });
 
 require __DIR__.'/settings.php';

@@ -13,8 +13,9 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Schedule } from "@/types";
+import { EventImpl } from "@fullcalendar/core/internal";
 
-export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWithoutRef<typeof Drawer> & { schedule: Schedule }) {
+export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWithoutRef<typeof Drawer> & { schedule: Schedule | EventImpl }) {
 
 
     return (

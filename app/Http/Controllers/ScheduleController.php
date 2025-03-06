@@ -6,6 +6,8 @@ use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Schedule;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -69,6 +71,13 @@ class ScheduleController extends Controller
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
         //
+    }
+    public function drag(Request $request, Schedule $schedule)
+    {
+        $validated  = $request->validate([
+            'date' => ['required', 'date']
+        ]);
+        $schedule->update(['date'=>Carbon::parse($validated['date'])->addDay()->toDateTime()] );
     }
 
     /**
