@@ -1,6 +1,5 @@
 
 import { CalendarScheduler } from '@/components/scheduler/calendar-scheduler';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { Schedule, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -11,7 +10,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/schedules',
     },
 ];
-``
+
 export default function Index({schedules}:Schedule) {
 
     return (
@@ -22,7 +21,7 @@ export default function Index({schedules}:Schedule) {
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
                   <CalendarScheduler schedules={schedules}/>
-                  
+
 
                 </div>
             </div>

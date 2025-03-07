@@ -80,5 +80,10 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();
+
+
+
     }
+
+
 }
