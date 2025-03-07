@@ -16,20 +16,22 @@ class ScheduleController extends Controller
      */
     public function index()
     {
+        $schedule = $this->user()->schedules()->select([
+            'id',
+            'title',
+            'description',
+            'borderColor',
+            'backgroundColor',
+            'textColor',
+            'start_time',
+            'end_time',
+            'user_id',
+            'date',
+        ])->get();
+        $this->authorize('view', $schedule->first());
 
         return inertia('schedule/index', [
-            'schedules' => ScheduleResource::collection($this->user()->schedules()->select([
-                'id',
-                'title',
-                'description',
-                'borderColor',
-                'backgroundColor',
-                'textColor',
-                'start_time',
-                'end_time',
-                'user_id',
-                'date',
-            ])->get()),
+            'schedules' => ScheduleResource::collection($schedule),
         ]);
     }
 
@@ -52,6 +54,8 @@ class ScheduleController extends Controller
 
     public function edit(Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
+
         return inertia('schedule/edit', ['schedule' => $schedule]);
     }
 
@@ -60,11 +64,13 @@ class ScheduleController extends Controller
      */
     public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
         $schedule->update($request->validated());
     }
 
     public function drag(Request $request, Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
         $validated = $request->validate([
             'date' => ['required', 'date'],
         ]);
@@ -79,11 +85,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
+        $this->authorize('delete', $schedule);
         $schedule->delete();
-
-
-
     }
-
-
 }

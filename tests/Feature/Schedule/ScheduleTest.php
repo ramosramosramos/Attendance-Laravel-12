@@ -3,7 +3,7 @@
 use App\Models\Schedule;
 use App\Models\User;
 
-it("shoud be able to visit the schedule page", function () {
+it('shoud be able to visit the schedule page', function () {
     $response = $this->get(route('schedules.index'));
     $response->assertStatus(302);
 });
@@ -55,7 +55,7 @@ it('should be able to update a  schedule', function () {
     $this->assertDatabaseHas('schedules', array_merge(['id' => $schedule->id], $updatedData));
 });
 
-it('should be able to edit a schedule',function(){
+it('should be able to edit a schedule', function () {
     $user = User::factory()->create();
     $schedule = Schedule::factory()->create([
         'user_id' => $user->id,
@@ -97,7 +97,7 @@ it('should be able to drag date of a  schedule', function () {
 
 });
 
-it('should delete a schedule', function(){
+it('should delete a schedule', function () {
 
     $user = User::factory()->create();
 
@@ -110,13 +110,12 @@ it('should delete a schedule', function(){
         'date' => now()->format('Y-m-d'),
     ]);
 
-    $response = $this->actingAs($user)->post(route('schedules.destroy',$schedule->id));
+    $response = $this->actingAs($user)->post(route('schedules.destroy', $schedule->id));
 
     $response->assertOk();
 
-
-    $this->assertDatabaseHas('schedules',[
-        'id'=>$schedule->id,
+    $this->assertDatabaseHas('schedules', [
+        'id' => $schedule->id,
 
     ]);
     $this->assertNotNull($schedule->fresh()->deleted_at);
