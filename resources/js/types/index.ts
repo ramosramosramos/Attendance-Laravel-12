@@ -29,6 +29,15 @@ export interface SharedData {
     [key: string]: unknown;
 }
 
+export interface Link{
+    label:string;
+    active:boolean;
+    url:string
+}
+
+export interface Meta{
+    links:Link[];
+}
 export interface User {
     id: number;
     name: string;
@@ -39,6 +48,8 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+
 export interface Schedule {
     id: string;
     title: string;
@@ -50,4 +61,15 @@ export interface Schedule {
     start_end: string;
     date: string;
     [key: string]: any;
+}
+
+export interface Student{
+    id: number;
+    name:string;
+    course:string;
+    year_level:string;
+    created_at:string;
+
+    [key: string]: any;
+
 }

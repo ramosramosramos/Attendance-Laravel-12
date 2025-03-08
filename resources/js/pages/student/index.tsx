@@ -1,7 +1,7 @@
 
 
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Meta, Student, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -11,8 +11,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Index() {
+interface StudentProps{
+    data:Student[];
+    meta:Meta;
+}
+export default function Index({students}:{students:StudentProps}) {
 
+    console.log(students.meta.links);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Students" />
