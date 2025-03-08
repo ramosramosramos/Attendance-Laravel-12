@@ -21,6 +21,7 @@ class StudentFactory extends Factory
             'name'=>fake()->name(),
             'gender'=>fake()->randomElement(['male','female']),
             'guardian'=>fake()->name(),
+            'guardian_phone'=>fake()->phoneNumber(),
             'phone'=>fake()->phoneNumber(),
             'email'=>fake()->email(),
             'address_1'=>fake()->address(),
