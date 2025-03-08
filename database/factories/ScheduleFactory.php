@@ -21,7 +21,7 @@ class ScheduleFactory extends Factory
         $date = fake()->randomElement([now()->addDays($number)]); // Generate a random date
 
         return [
-            'user_id' => 1,
+            'user_id' => fake()->randomElement([1,2]),
             'title' => fake()->realText(20),
             'description' => fake()->realText(50),
             'borderColor' => fake()->randomElement(['#ffffff59', '#ffffff', '']),
