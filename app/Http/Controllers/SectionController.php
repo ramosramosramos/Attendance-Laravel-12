@@ -13,7 +13,11 @@ class SectionController extends Controller
      */
     public function index()
     {
-        return inertia('section/index');
+        $sections = $this->user()->sections()->select(['id','name','teacher_id'])->get();
+        $this->authorize('view',$sections->first());
+        return inertia('section/index',[
+            'sections' => $sections,
+        ]);
     }
 
     public function store(StoreSectionRequest $request)
@@ -26,6 +30,7 @@ class SectionController extends Controller
      */
     public function update(UpdateSectionRequest $request, Section $section)
     {
+        $this->authorize('update', $section);
         $section->update($request->validated());
     }
 
@@ -34,6 +39,7 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
+        $this->authorize('delete', $section);
         $section->deleteOrFail();
     }
 }

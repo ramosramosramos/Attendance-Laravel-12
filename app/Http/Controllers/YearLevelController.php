@@ -13,7 +13,11 @@ class YearLevelController extends Controller
      */
     public function index()
     {
-        return inertia('year-level/index');
+        $yearLevels = $this->user()->yearLevels()->select(['id', 'name','teacher_id'])->get();
+        $this->authorize('view',$yearLevels->first());
+        return inertia('year-level/index',[
+            'yearLevels' => $yearLevels,
+        ]);
     }
 
     /**
@@ -29,6 +33,7 @@ class YearLevelController extends Controller
      */
     public function update(UpdateYearLevelRequest $request, YearLevel $yearLevel)
     {
+        $this->authorize('update', $yearLevel);
         $yearLevel->update($request->validated());
     }
 
@@ -37,6 +42,7 @@ class YearLevelController extends Controller
      */
     public function destroy(YearLevel $yearLevel)
     {
+        $this->authorize('delete', $yearLevel);
         $yearLevel->deleteOrFail();
     }
 }

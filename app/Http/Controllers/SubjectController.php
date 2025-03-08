@@ -13,7 +13,11 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return inertia('subject/index');
+        $subjects = $this->user()->subjects()->select(['id','name','teacher_id'])->get();
+        $this->authorize('view',$subjects->first());
+        return inertia('subject/index',[
+            'subjects' => $subjects,
+        ]);
     }
 
     public function store(StoreSubjectRequest $request)
@@ -26,6 +30,7 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
+        $this->authorize('update',$subject);
         $subject->update($request->validated());
     }
 
@@ -34,6 +39,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
+        $this->authorize('delete', $subject);
         $subject->deleteOrFail();
     }
 }
