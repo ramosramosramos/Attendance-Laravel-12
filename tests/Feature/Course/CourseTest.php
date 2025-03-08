@@ -75,8 +75,8 @@ it('should be able to delete a course', function () {
     $user = User::factory()->create();
     $course = Course::create([
         'teacher_id' => $user->id,
-        'name' => "Name of Course",
-        'code' => "Code of Course",
+        'name' => 'Name of Course',
+        'code' => 'Code of Course',
     ]);
 
     $response = $this->actingAs($user)->post(route('courses.destroy', $course));

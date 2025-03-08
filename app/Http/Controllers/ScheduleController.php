@@ -49,7 +49,6 @@ class ScheduleController extends Controller
      */
     public function store(StoreScheduleRequest $request)
     {
-
         Schedule::create($request->validated());
     }
 

@@ -13,7 +13,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return inertia('course/index');
+        $courses = $this->user()->courses()->select(['id', 'name', 'code','teacher_id'])->get();
+
+        $this->authorize('view',$courses->first());
+        return inertia('course/index', [
+            'courses' => $courses,
+        ]);
     }
 
     /**
@@ -24,11 +29,11 @@ class CourseController extends Controller
         Course::create(array_merge($request->validated(), [
             'teacher_id' => $this->user()->id,
         ]));
-
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
     {
+        $this->authorize('update',$course);
         $course->update(array_merge($request->validated(), [
             'teacher_id' => $this->user()->id,
         ]));
@@ -36,6 +41,7 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
+        $this->authorize('delete',$course);
         $course->deleteOrFail();
     }
 }

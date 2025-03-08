@@ -60,4 +60,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(Student::class, 'teacher_id');
     }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'teacher_id');
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'teacher_id');
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class, 'teacher_id');
+    }
+
+    public function yearLevels()
+    {
+        return $this->hasMany(YearLevel::class, 'teacher_id');
+    }
 }
