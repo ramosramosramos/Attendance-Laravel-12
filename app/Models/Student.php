@@ -11,12 +11,10 @@ class Student extends Model
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory,SoftDeletes;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
-
-    public function user(){
-        return $this->belongsTo(User::class,'teacher_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'teacher_id');
     }
-
-
 }

@@ -29,7 +29,7 @@ class SchedulePolicy
      */
     public function delete(User $user, Schedule $schedule): Response
     {
-        return  $user->id === $schedule->user_id  ? Response::allow()
+        return $user->id === $schedule->user_id ? Response::allow()
             : Response::denyAsNotFound();
     }
 
@@ -38,7 +38,7 @@ class SchedulePolicy
      */
     public function restore(User $user, Schedule $schedule): Response
     {
-        return  $user->id === $schedule->user_id  ? Response::allow()
+        return $user->id === $schedule->user_id ? Response::allow()
             : Response::denyAsNotFound();
     }
 
@@ -47,7 +47,7 @@ class SchedulePolicy
      */
     public function forceDelete(User $user, Schedule $schedule): Response
     {
-        return  $user->id === $schedule->user_id  ? Response::allow()
+        return $user->id === $schedule->user_id ? Response::allow()
             : Response::denyAsNotFound();
     }
 }

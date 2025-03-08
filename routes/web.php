@@ -24,5 +24,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/students/{student}/destroy', [StudentController::class, 'destroy'])->name('students.destroy');
 });
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
