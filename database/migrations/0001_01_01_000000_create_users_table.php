@@ -35,6 +35,35 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('courses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->string('name')->unique();
+            $table->string('code')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('year_levels', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('sections', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -45,5 +74,10 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+
+        Schema::dropIfExists('courses');
+        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('year_levels');
+        Schema::dropIfExists('sections');
     }
 };

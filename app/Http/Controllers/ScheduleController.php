@@ -17,7 +17,6 @@ class ScheduleController extends Controller
     public function index()
     {
 
-
         $schedule = $this->user()->schedules()->select([
             'id',
             'title',
