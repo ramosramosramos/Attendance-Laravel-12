@@ -14,6 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
+
         $students = $this->user()->students()->select(
             [
                 'id',
