@@ -29,7 +29,14 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Schedule::factory(100)->create();
-        Student::factory(100)->create();
+        Schedule::factory(10)->create();
+        Student::factory(10)->create();
+
+        $this->call([
+            CourseSeeder::class,
+            SubjectSeeder::class,
+            SectionSeeder::class,
+            YearLevelSeeder::class,
+        ]);
     }
 }

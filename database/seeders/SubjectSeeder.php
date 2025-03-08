@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SubjectSeeder extends Seeder
 {
@@ -13,5 +14,25 @@ class SubjectSeeder extends Seeder
     public function run(): void
     {
         //
+
+        DB::table('subjects')->insert(
+            [
+                [
+                    'name' => 'Math',
+                    'teacher_id'=>1
+                ],
+                [
+                    'name' => 'Science',
+                    'teacher_id'=>1
+                ],
+                [
+                    'name' => 'English',
+                    'teacher_id'=>2
+                ],
+
+
+            ]
+        );
+        
     }
 }
