@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -16,18 +16,22 @@ class CourseController extends Controller
         return inertia('course/index');
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreCourseRequest $request)
     {
-        Course::create($request->validated());
+        Course::create(array_merge($request->validated(), [
+            'teacher_id' => $this->user()->id,
+        ]));
+
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        $course->update($request->validated());
+        $course->update(array_merge($request->validated(), [
+            'teacher_id' => $this->user()->id,
+        ]));
     }
 
     public function destroy(Course $course)

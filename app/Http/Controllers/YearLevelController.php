@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\YearLevel;
 use App\Http\Requests\StoreYearLevelRequest;
 use App\Http\Requests\UpdateYearLevelRequest;
+use App\Models\YearLevel;
 
 class YearLevelController extends Controller
 {
@@ -16,7 +16,6 @@ class YearLevelController extends Controller
         return inertia('year-level/index');
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -24,8 +23,6 @@ class YearLevelController extends Controller
     {
         YearLevel::create($request->validated());
     }
-
-
 
     /**
      * Update the specified resource in storage.

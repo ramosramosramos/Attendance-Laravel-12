@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subject;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use App\Models\Subject;
 
 class SubjectController extends Controller
 {
@@ -15,7 +15,6 @@ class SubjectController extends Controller
     {
         return inertia('subject/index');
     }
-
 
     public function store(StoreSubjectRequest $request)
     {

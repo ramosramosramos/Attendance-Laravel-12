@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,20 +18,19 @@ class SubjectSeeder extends Seeder
             [
                 [
                     'name' => 'Math',
-                    'teacher_id'=>1
+                    'teacher_id' => 1,
                 ],
                 [
                     'name' => 'Science',
-                    'teacher_id'=>1
+                    'teacher_id' => 1,
                 ],
                 [
                     'name' => 'English',
-                    'teacher_id'=>2
+                    'teacher_id' => 2,
                 ],
-
 
             ]
         );
-        
+
     }
 }

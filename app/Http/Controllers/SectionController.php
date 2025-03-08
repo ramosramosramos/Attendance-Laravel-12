@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Section;
 use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
+use App\Models\Section;
 
 class SectionController extends Controller
 {
@@ -16,12 +16,10 @@ class SectionController extends Controller
         return inertia('section/index');
     }
 
-
     public function store(StoreSectionRequest $request)
     {
-            Section::create($request->validated());
+        Section::create($request->validated());
     }
-
 
     /**
      * Update the specified resource in storage.
