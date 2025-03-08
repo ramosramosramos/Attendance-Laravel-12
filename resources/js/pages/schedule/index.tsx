@@ -1,9 +1,9 @@
 
+import LinearLoading from '@/components/loadings/linear-loading';
 import { CalendarScheduler } from '@/components/scheduler/calendar-scheduler';
 import AppLayout from '@/layouts/app-layout';
 import { Schedule, type BreadcrumbItem } from '@/types';
-import { Head, WhenVisible } from '@inertiajs/react';
-
+import { Head, } from '@inertiajs/react';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Schedule',
@@ -11,7 +11,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Index({schedules}:Schedule) {
+export default function Index({ schedules }: Schedule) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -20,11 +20,9 @@ export default function Index({schedules}:Schedule) {
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-             <WhenVisible data={schedules} fallback={<div>Loading schedules</div>}>
-             <CalendarScheduler schedules={schedules}/>
-             </WhenVisible>
-
-
+                    <LinearLoading data={schedules}>
+                        <CalendarScheduler schedules={schedules} />
+                    </LinearLoading>
                 </div>
             </div>
         </AppLayout>
