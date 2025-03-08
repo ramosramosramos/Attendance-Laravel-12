@@ -55,4 +55,10 @@ class User extends Authenticatable
     // public function  scopeGetSchedules(){
     //     return Auth::user()->schedules()->get();
     // }
+
+    public function  students(){
+        return $this->hasMany(Student::class,'teacher_id');
+    }
+
+
 }

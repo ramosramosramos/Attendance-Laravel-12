@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Schedule;
+use App\Models\Student;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,7 +14,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {   
+    {
 
         User::factory()->create([
             'name' => 'First User',
@@ -29,5 +30,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Schedule::factory(100)->create();
+        Student::factory(100)->create();
     }
 }
