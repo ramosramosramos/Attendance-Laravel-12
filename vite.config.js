@@ -1,5 +1,5 @@
 const ReactCompilerConfig = {
-    target: '19' // '17' | '18' | '19'
+    target: '18' // '17' | '18' | '19'
  };
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';

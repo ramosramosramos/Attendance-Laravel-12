@@ -2,7 +2,7 @@
 import { CalendarScheduler } from '@/components/scheduler/calendar-scheduler';
 import AppLayout from '@/layouts/app-layout';
 import { Schedule, type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, WhenVisible } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -20,7 +20,9 @@ export default function Index({schedules}:Schedule) {
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-                  <CalendarScheduler schedules={schedules}/>
+             <WhenVisible data={schedules} fallback={<div>Loading schedules</div>}>
+             <CalendarScheduler schedules={schedules}/>
+             </WhenVisible>
 
 
                 </div>

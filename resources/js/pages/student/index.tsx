@@ -2,7 +2,7 @@
 
 import AppLayout from '@/layouts/app-layout';
 import { Meta, Student, type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, WhenVisible } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
