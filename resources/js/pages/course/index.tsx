@@ -1,6 +1,5 @@
 
 import { CourseCard } from '@/components/cards/course-card';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { Course, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';

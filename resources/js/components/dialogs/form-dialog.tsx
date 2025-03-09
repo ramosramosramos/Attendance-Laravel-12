@@ -106,27 +106,33 @@ FormDialog.InputErrorMessage = InputErrorMessage;
 
 // how to use
 
-//    <FormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
-//                 <FormDialog.Header>
-//                     <FormDialog.Title>
-//                         Edit Course
-//                     </FormDialog.Title>
-//                     <FormDialog.Description>
-//                         Make changes to your course here. Click save when you're done.
-//                     </FormDialog.Description>
-//                 </FormDialog.Header>
-//                 <FormDialog.Form>
-//                     <FormDialog.Content>
-//                         <FormDialog.InputLabel htmlFor="name">
-//                             Name
-//                         </FormDialog.InputLabel>
-//                         <FormDialog.InputField id="name" />
-//                     </FormDialog.Content>
-//                     <FormDialog.Content>
-//                         <FormDialog.InputLabel htmlFor="code">
-//                             Course code
-//                         </FormDialog.InputLabel>
-//                         <FormDialog.InputField id="code" />
-//                     </FormDialog.Content>
-//                 </FormDialog.Form>
-//             </FormDialog>
+    //   <FormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
+    //             <FormDialog.Header>
+    //                 <FormDialog.Title>
+    //                     Edit Course
+    //                 </FormDialog.Title>
+    //                 <FormDialog.Description>
+    //                     Make changes to your course here. Click save when you're done.
+    //                 </FormDialog.Description>
+    //             </FormDialog.Header>
+    //             <FormDialog.Form onSubmit={handleEdit} >
+    //                 <FormDialog.Content>
+    //                     <FormDialog.InputLabel htmlFor="name">
+    //                         Name
+    //                     </FormDialog.InputLabel>
+    //                     <FormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
+    //                     <FormDialog.InputErrorMessage message={errors.name} />
+
+    //                 </FormDialog.Content>
+    //                 <FormDialog.Content>
+    //                     <FormDialog.InputLabel htmlFor="code">
+    //                         Course code
+    //                     </FormDialog.InputLabel>
+    //                     <FormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
+    //                     <FormDialog.InputErrorMessage message={errors.code} />
+    //                 </FormDialog.Content>
+    //                 <FormDialog.PrimaryButton disabled={processing}>
+    //                     Save
+    //                 </FormDialog.PrimaryButton>
+    //             </FormDialog.Form>
+    //         </FormDialog>
