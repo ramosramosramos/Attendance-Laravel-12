@@ -49,16 +49,17 @@ function Header({ children }: any) {
     );
 }
 interface ActionButtonsProps {
-    course: Course,
+    item: any,
     titleConfirm?: string,
     descriptionConfirm?: string,
     updateURL: string;
     deleteURL: string;
+    formTypeValues:any
+    inputOptions:any;
 }
 
-function ActionButtons({ updateURL, deleteURL, course, titleConfirm, descriptionConfirm }: ActionButtonsProps) {
+function ActionButtons({ updateURL, deleteURL, item, titleConfirm, descriptionConfirm ,formTypeValues,inputOptions}: ActionButtonsProps) {
     const { is_confirmed } = usePage<SharedData>().props.auth;
-    console.log(is_confirmed);
     const [open, setOpen] = useState(false);
     const handleDelete = () => {
         router.post(deleteURL, {}, { preserveScroll: true })
@@ -67,13 +68,13 @@ function ActionButtons({ updateURL, deleteURL, course, titleConfirm, description
         <CardFooter className="flex gap-5">
 
             <DefaultFormDialog
-                title='Edit course'
-                description="  Make changes to your course here. Click save when you're done."
+                title={'Edit '}
+                description="Click save when you're done."
                 buttonText='Save'
-                inputOptions={[{ name: 'name', label: 'Name', }, { name: 'code', label: 'Code', }]}
-                formTypeValues={{ name: course.name, code: course.code }}
+                inputOptions={inputOptions}
+                formTypeValues={formTypeValues}
                 uri={updateURL}
-                messagesSuccess='Your course has been successfully updated.'
+                messagesSuccess='Your item has been successfully updated.'
                 variant={'outline'}
             >
                 <Edit2Icon /> Edit

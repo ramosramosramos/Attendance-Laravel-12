@@ -47,9 +47,11 @@ export default function Index({ courses }: { courses: Course[] }) {
                                         </DefaultCard.Description>
                                     </DefaultCard.Header>
                                     <DefaultCard.ActionButtons
+                                        inputOptions={[{ name: 'name', label: 'Name', }, { name: 'code', label: 'Code', }]}
+                                        formTypeValues={{ name: course.name, code: course.code }}
                                         titleConfirm='Are you sure you want to delete this course?'
                                         descriptionConfirm='This course will be deleted permanently.'
-                                        course={course} deleteURL={course.deleteURL} updateURL={course.updateURL} />
+                                        item={course} deleteURL={course.deleteURL} updateURL={course.updateURL} />
                                 </DefaultCard>
                             ))}
                         </section>

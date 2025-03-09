@@ -13,8 +13,15 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = $this->user()->subjects()->select(['id', 'name', 'teacher_id'])->get();
-        $this->authorize('view', $subjects->first());
+        $subjects = $this->user()->subjects()->select(['id', 'name', 'teacher_id'])
+        ->get()->map(function ($subject){
+                      return [
+                        'id'=>$subject->id,
+                        'name'=>$subject->name,
+                        'updateURL'=>route("subjects.update",$subject),
+                        'deleteURL'=>route("subjects.destroy",$subject),
+                      ];
+        });
 
         return inertia('subject/index', [
             'subjects' => $subjects,

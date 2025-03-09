@@ -75,11 +75,23 @@ export interface Student{
 
 }
 
-export interface Course{
+export interface SharedTypes{
     id: number;
     name: string;
-    code: string;
     updateURL: string;
     deleteURL: string;
     [key:string]: any;
+}
+export interface Course extends SharedTypes{
+    code?: string;
+}
+
+export interface Subject extends SharedTypes{
+
+}
+export interface Section extends SharedTypes{
+
+}
+export interface YearLevel extends SharedTypes{
+
 }
