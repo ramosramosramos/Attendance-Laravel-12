@@ -10,16 +10,15 @@ class SectionPolicy
 {
     public function view(User $user, Section $section): Response
     {
-        return $user->id ===$section->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $section->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
-
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Section $section): Response
     {
-        return $user->id ===$section->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $section->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -27,7 +26,7 @@ class SectionPolicy
      */
     public function delete(User $user, Section $section): Response
     {
-        return $user->id ===$section->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $section->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -35,7 +34,7 @@ class SectionPolicy
      */
     public function restore(User $user, Section $section): Response
     {
-        return $user->id ===$section->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $section->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -43,6 +42,6 @@ class SectionPolicy
      */
     public function forceDelete(User $user, Section $section): Response
     {
-        return $user->id ===$section->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $section->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 }

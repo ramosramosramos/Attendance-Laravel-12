@@ -1,5 +1,5 @@
 
-import { CourseCard } from '@/components/cards/course-card';
+import { DefaultCard } from '@/components/cards/default-card';
 import DefaultFormDialog from '@/components/forms/default-form-dialog';
 import LinearLoading from '@/components/loadings/linear-loading';
 import AppLayout from '@/layouts/app-layout';
@@ -37,17 +37,20 @@ export default function Index({ courses }: { courses: Course[] }) {
                     <LinearLoading data={courses}>
                         <section className='p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
                             {courses.length > 0 && courses.map((course) => (
-                                <CourseCard key={course.id}>
-                                    <CourseCard.Header>
-                                        <CourseCard.Title>
+                                <DefaultCard key={course.id}>
+                                    <DefaultCard.Header>
+                                        <DefaultCard.Title>
                                             {course.code}
-                                        </CourseCard.Title>
-                                        <CourseCard.Description>
+                                        </DefaultCard.Title>
+                                        <DefaultCard.Description>
                                             {course.name}
-                                        </CourseCard.Description>
-                                    </CourseCard.Header>
-                                    <CourseCard.ActionButtons course={course} deleteURL={course.deleteURL} updateURL={course.updateURL} />
-                                </CourseCard>
+                                        </DefaultCard.Description>
+                                    </DefaultCard.Header>
+                                    <DefaultCard.ActionButtons
+                                        titleConfirm='Are you sure you want to delete this course?'
+                                        descriptionConfirm='This course will be deleted permanently.'
+                                        course={course} deleteURL={course.deleteURL} updateURL={course.updateURL} />
+                                </DefaultCard>
                             ))}
                         </section>
                     </LinearLoading>

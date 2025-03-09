@@ -40,8 +40,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Section::class, SectionPolicy::class);
         Gate::policy(YearLevel::class, YearLevelPolicy::class);
 
-
-        //observers
+        // observers
         Schedule::observe(ScheduleObserver::class);
         Course::observe(CourseObserver::class);
     }

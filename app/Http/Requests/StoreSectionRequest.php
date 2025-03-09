@@ -22,7 +22,7 @@ class StoreSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required','string','unique:sections,name'],
+            'name' => ['required', 'string', 'unique:sections,name'],
         ];
     }
 }

@@ -13,9 +13,10 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections = $this->user()->sections()->select(['id','name','teacher_id'])->get();
-        $this->authorize('view',$sections->first());
-        return inertia('section/index',[
+        $sections = $this->user()->sections()->select(['id', 'name', 'teacher_id'])->get();
+        $this->authorize('view', $sections->first());
+
+        return inertia('section/index', [
             'sections' => $sections,
         ]);
     }

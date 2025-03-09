@@ -17,16 +17,15 @@ class YearLevelPolicy
      */
     public function view(User $user, YearLevel $yearLevel): Response
     {
-        return  $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
- 
      * Determine whether the user can update the model.
      */
     public function update(User $user, YearLevel $yearLevel): Response
     {
-        return  $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -34,7 +33,7 @@ class YearLevelPolicy
      */
     public function delete(User $user, YearLevel $yearLevel): Response
     {
-        return  $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -42,7 +41,7 @@ class YearLevelPolicy
      */
     public function restore(User $user, YearLevel $yearLevel): Response
     {
-        return  $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -50,6 +49,6 @@ class YearLevelPolicy
      */
     public function forceDelete(User $user, YearLevel $yearLevel): Response
     {
-        return  $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id === $yearLevel->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 }

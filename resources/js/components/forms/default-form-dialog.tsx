@@ -3,8 +3,7 @@ import { CompoundFormDialog } from "../dialogs/compound-form-dialog";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
-import { LucideProps } from "lucide-react";
-
+import { cn } from "@/lib/utils";
 interface Option {
     name: string;
     label: string;
@@ -18,12 +17,15 @@ interface DefaultCompoundFormDialogProps {
     inputOptions: Option[];
     formTypeValues: any
     messagesSuccess?: string;
+    className?: string;
+    variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined;
 }
 
-export default function DefaultFormDialog({ children, title, description, buttonText, uri, inputOptions, formTypeValues, messagesSuccess }: DefaultCompoundFormDialogProps) {
+export default function DefaultFormDialog({ children, title, description, buttonText,
+    uri, inputOptions, formTypeValues, messagesSuccess, className, variant }: DefaultCompoundFormDialogProps) {
 
     const [openForm, setOpenForm] = useState(false);
-    const { data, setData, post, processing, errors } = useForm<any>({
+    const { data, setData, post, processing, errors, reset } = useForm<any>({
         ...formTypeValues,
     });
     const handleSubmit = (e: any) => {
@@ -32,6 +34,7 @@ export default function DefaultFormDialog({ children, title, description, button
             preserveScroll: true,
             onSuccess: () => {
                 toast.success(messagesSuccess ? messagesSuccess : 'Successfully submitted.');
+                reset();
                 setOpenForm(false);
             }
         });
@@ -63,7 +66,7 @@ export default function DefaultFormDialog({ children, title, description, button
                     </CompoundFormDialog.PrimaryButton>
                 </CompoundFormDialog.Form>
             </CompoundFormDialog>
-            <Button onClick={() => setOpenForm(true)} variant={'outline'} className="w-full">
+            <Button onClick={() => setOpenForm(true)} variant={variant} className={cn('w-full', className)}>
                 {children}
             </Button>
         </>

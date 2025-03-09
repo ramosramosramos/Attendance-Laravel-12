@@ -13,9 +13,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = $this->user()->subjects()->select(['id','name','teacher_id'])->get();
-        $this->authorize('view',$subjects->first());
-        return inertia('subject/index',[
+        $subjects = $this->user()->subjects()->select(['id', 'name', 'teacher_id'])->get();
+        $this->authorize('view', $subjects->first());
+
+        return inertia('subject/index', [
             'subjects' => $subjects,
         ]);
     }
@@ -30,7 +31,7 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
-        $this->authorize('update',$subject);
+        $this->authorize('update', $subject);
         $subject->update($request->validated());
     }
 

@@ -19,7 +19,6 @@ class SubjectPolicy
         return $user->id === $subject->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
-
     /**
      * Determine whether the user can update the model.
      */

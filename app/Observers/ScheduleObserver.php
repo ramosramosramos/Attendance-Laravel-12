@@ -11,7 +11,7 @@ class ScheduleObserver
      */
     public function created(Schedule $schedule): void
     {
-         request()->session()->put('auth.password_confirmed_at', null);
+        request()->session()->put('auth.password_confirmed_at', null);
     }
 
     /**
@@ -19,7 +19,7 @@ class ScheduleObserver
      */
     public function updated(Schedule $schedule): void
     {
-         request()->session()->put('auth.password_confirmed_at', null);
+        request()->session()->put('auth.password_confirmed_at', null);
     }
 
     /**
@@ -36,7 +36,7 @@ class ScheduleObserver
      */
     public function restored(Schedule $schedule): void
     {
-         request()->session()->put('auth.password_confirmed_at', null);
+        request()->session()->put('auth.password_confirmed_at', null);
     }
 
     /**
@@ -44,6 +44,6 @@ class ScheduleObserver
      */
     public function forceDeleted(Schedule $schedule): void
     {
-         request()->session()->put('auth.password_confirmed_at', null);
+        request()->session()->put('auth.password_confirmed_at', null);
     }
 }
