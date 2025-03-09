@@ -16,21 +16,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        User::factory()->create([
+        User::factory()->createQuietly([
             'name' => 'First User',
             'email' => 'admin1@gmail.com',
             'password' => 'password',
             'email_verified_at' => now(),
         ]);
-        User::factory()->create([
+        User::factory()->createQuietly([
             'name' => 'Second User',
             'email' => 'admin2@gmail.com',
             'password' => 'password',
             'email_verified_at' => now(),
         ]);
 
-        Schedule::factory(10)->create();
-        Student::factory(10)->create();
+        Schedule::factory(10)->createQuietly();
+        Student::factory(10)->createQuietly();
 
         $this->call([
             CourseSeeder::class,

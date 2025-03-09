@@ -34,14 +34,16 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         // policies
-        Gate::policy(Schedule::class, SchedulePolicy::class);
-        Gate::policy(Course::class, CoursePolicy::class);
-        Gate::policy(Subject::class, SubjectPolicy::class);
-        Gate::policy(Section::class, SectionPolicy::class);
-        Gate::policy(YearLevel::class, YearLevelPolicy::class);
 
-        // observers
-        Schedule::observe(ScheduleObserver::class);
-        Course::observe(CourseObserver::class);
+    Gate::policy(Schedule::class, SchedulePolicy::class);
+    Gate::policy(Course::class, CoursePolicy::class);
+    Gate::policy(Subject::class, SubjectPolicy::class);
+    Gate::policy(Section::class, SectionPolicy::class);
+    Gate::policy(YearLevel::class, YearLevelPolicy::class);
+
+    // observers
+    Schedule::observe(ScheduleObserver::class);
+    Course::observe(CourseObserver::class);
+
     }
 }

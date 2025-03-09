@@ -13,8 +13,8 @@ import {
 import { useState } from "react"
 import { ConfirmDialog } from "../dialogs/confirm-dialog"
 import * as React from "react"
-import { router } from "@inertiajs/react"
-import { Course } from "@/types"
+import { router, usePage } from "@inertiajs/react"
+import { Auth, Course, SharedData } from "@/types"
 import DefaultFormDialog from "../forms/default-form-dialog"
 
 type CardProps = React.ComponentProps<typeof Card>
@@ -57,8 +57,9 @@ interface ActionButtonsProps {
 }
 
 function ActionButtons({ updateURL, deleteURL, course, titleConfirm, descriptionConfirm }: ActionButtonsProps) {
+    const { is_confirmed } = usePage<SharedData>().props.auth;
+    console.log(is_confirmed);
     const [open, setOpen] = useState(false);
-
     const handleDelete = () => {
         router.post(deleteURL, {}, { preserveScroll: true })
     }
@@ -78,11 +79,18 @@ function ActionButtons({ updateURL, deleteURL, course, titleConfirm, description
                 <Edit2Icon /> Edit
             </DefaultFormDialog>
 
-            <Button onClick={() => setOpen(true)} variant={'destructive'} className="w-full">
+            <Button onClick={() => {
+                if (!is_confirmed) {
+                    router.post(deleteURL, {}, { preserveScroll: true })
+                }
+                if (is_confirmed) {
+                    setOpen(true)
+                }
+            }} variant={'destructive'} className="w-full">
                 <Trash2Icon /> Delete
             </Button>
-            {open && <ConfirmDialog isOpen={open} title={titleConfirm?titleConfirm:'"Are you sure you want to delete this?"'}
-                description={descriptionConfirm?descriptionConfirm:"This will be deleted permanently."}
+            {open && <ConfirmDialog isOpen={open} title={titleConfirm ? titleConfirm : '"Are you sure you want to delete this?"'}
+                description={descriptionConfirm ? descriptionConfirm : "This will be deleted permanently."}
                 cancelOnClick={() => setOpen(false)}
                 actionOnClick={handleDelete}
             />}

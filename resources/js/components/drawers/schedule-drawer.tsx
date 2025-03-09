@@ -11,14 +11,15 @@ import {
     DrawerHeader,
     DrawerTitle,
 } from "@/components/ui/drawer"
-import { Schedule } from "@/types";
+import { Schedule, SharedData } from "@/types";
 import { EventImpl } from "@fullcalendar/core/internal";
-import { router, useForm } from "@inertiajs/react";
+import { router, useForm, usePage } from "@inertiajs/react";
 import { ConfirmDialog } from "../dialogs/confirm-dialog";
 import { toast } from "sonner";
 import { useCalendarContext } from "@/hooks/use-calendar-context";
 
 export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWithoutRef<typeof Drawer> & { schedule: Schedule | EventImpl }) {
+    const {is_confirmed} = usePage<SharedData>().props.auth;
     const [openConfirm, setOpenConfirm] = React.useState(false);
     const { open, setOpen } = useCalendarContext();
     const form = useForm({});
@@ -51,7 +52,15 @@ export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWitho
                         }}>
                             Edit
                         </Button>
-                        <Button variant={'destructive'} onClick={() => setOpenConfirm(true)} >
+                        <Button variant={'destructive'} onClick={() =>{
+                             if(!is_confirmed){
+                                router.post(route('schedules.destroy', schedule.id));
+                             }
+                             if(is_confirmed){
+
+                                 setOpenConfirm(true)
+                             }
+                             }} >
                             Delete
                         </Button>
                         {openConfirm && <ConfirmDialog isOpen={openConfirm}
