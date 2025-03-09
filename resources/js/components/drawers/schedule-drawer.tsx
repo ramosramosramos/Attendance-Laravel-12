@@ -29,18 +29,33 @@ export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWitho
             <DrawerContent className="">
 
                 <DrawerHeader className="text-left">
-                    <DrawerTitle className="space-x-1"><span>{schedule.title} </span>( {<span> {schedule.extendedProps.date} </span>})</DrawerTitle>
+                    <DrawerTitle className="space-x-1 text-4xl"><span>{schedule.title} </span></DrawerTitle>
                     <DrawerDescription>
-                        {schedule.extendedProps.description}
+                        {schedule.extendedProps.description} <br />
+                    </DrawerDescription>
+                    <DrawerDescription>
+                        {<span> {schedule.extendedProps.date} </span>}
                     </DrawerDescription>
 
                 </DrawerHeader>
                 <div className="p-10 ">
                     <DrawerDescription className="flex flex-col">
 
-                        <span>   <span>Start from :</span>
-                            <span className="text-green-500"> {schedule.extendedProps.start_time} </span> - <span className="text-green-500"> {schedule.extendedProps.end_time}</span>
+                        <span>
+                            <span className="text-3xl font-extrabold"> {schedule.extendedProps.course_name} </span>
+                        </span>
+                        <span>
+                            <span className="text-"> Subject: {schedule.extendedProps.subject_name} </span>
+                        </span>
+                        <span>
+                            <span className="text-"> Section: {schedule.extendedProps.section_name} </span>
+                        </span>
+                        <span>
+                            <span className="text-"> Year level: {schedule.extendedProps.year_level_name} </span>
+                        </span>
 
+                        <span>   <span>Start from :</span>
+                            <span className="text-green-500">   {schedule.extendedProps.start_time} </span> - <span className="text-green-500"> {schedule.extendedProps.end_time}</span>
                         </span>
                     </DrawerDescription>
                 </div>
