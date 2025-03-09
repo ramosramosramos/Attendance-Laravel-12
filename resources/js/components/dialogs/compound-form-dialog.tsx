@@ -16,13 +16,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import InputError from "../input-error"
 
-interface FormDialogPops {
+interface CompoundFormDialogProps {
     openDialog: boolean;
     setOpenDialog: (open: boolean) => void;
     children: any
 
 }
-export function FormDialog({ openDialog, setOpenDialog, children }: FormDialogPops) {
+export function CompoundFormDialog({ openDialog, setOpenDialog, children }: CompoundFormDialogProps) {
 
     return (
         <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -91,48 +91,48 @@ function PrimaryButton({ children, className, ...props }: React.ComponentProps<t
         </Button>
     )
 }
-FormDialog.Header = Header;
-FormDialog.Title = Title;
-FormDialog.Description = Description;
+CompoundFormDialog.Header = Header;
+CompoundFormDialog.Title = Title;
+CompoundFormDialog.Description = Description;
 
 //Usage information
-FormDialog.Form = Form;
-FormDialog.Content = Content;
-FormDialog.InputLabel = InputLabel;
-FormDialog.InputField = InputField;
-FormDialog.PrimaryButton = PrimaryButton;
-FormDialog.InputErrorMessage = InputErrorMessage;
+CompoundFormDialog.Form = Form;
+CompoundFormDialog.Content = Content;
+CompoundFormDialog.InputLabel = InputLabel;
+CompoundFormDialog.InputField = InputField;
+CompoundFormDialog.PrimaryButton = PrimaryButton;
+CompoundFormDialog.InputErrorMessage = InputErrorMessage;
 
 
 // how to use
 
-    //   <FormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
-    //             <FormDialog.Header>
-    //                 <FormDialog.Title>
+    //   <CompoundFormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
+    //             <CompoundFormDialog.Header>
+    //                 <CompoundFormDialog.Title>
     //                     Edit Course
-    //                 </FormDialog.Title>
-    //                 <FormDialog.Description>
+    //                 </CompoundFormDialog.Title>
+    //                 <CompoundFormDialog.Description>
     //                     Make changes to your course here. Click save when you're done.
-    //                 </FormDialog.Description>
-    //             </FormDialog.Header>
-    //             <FormDialog.Form onSubmit={handleEdit} >
-    //                 <FormDialog.Content>
-    //                     <FormDialog.InputLabel htmlFor="name">
+    //                 </CompoundFormDialog.Description>
+    //             </CompoundFormDialog.Header>
+    //             <CompoundFormDialog.Form onSubmit={handleEdit} >
+    //                 <CompoundFormDialog.Content>
+    //                     <CompoundFormDialog.InputLabel htmlFor="name">
     //                         Name
-    //                     </FormDialog.InputLabel>
-    //                     <FormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
-    //                     <FormDialog.InputErrorMessage message={errors.name} />
+    //                     </CompoundFormDialog.InputLabel>
+    //                     <CompoundFormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
+    //                     <CompoundFormDialog.InputErrorMessage message={errors.name} />
 
-    //                 </FormDialog.Content>
-    //                 <FormDialog.Content>
-    //                     <FormDialog.InputLabel htmlFor="code">
+    //                 </CompoundFormDialog.Content>
+    //                 <CompoundFormDialog.Content>
+    //                     <CompoundFormDialog.InputLabel htmlFor="code">
     //                         Course code
-    //                     </FormDialog.InputLabel>
-    //                     <FormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
-    //                     <FormDialog.InputErrorMessage message={errors.code} />
-    //                 </FormDialog.Content>
-    //                 <FormDialog.PrimaryButton disabled={processing}>
+    //                     </CompoundFormDialog.InputLabel>
+    //                     <CompoundFormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
+    //                     <CompoundFormDialog.InputErrorMessage message={errors.code} />
+    //                 </CompoundFormDialog.Content>
+    //                 <CompoundFormDialog.PrimaryButton disabled={processing}>
     //                     Save
-    //                 </FormDialog.PrimaryButton>
-    //             </FormDialog.Form>
-    //         </FormDialog>
+    //                 </CompoundFormDialog.PrimaryButton>
+    //             </CompoundFormDialog.Form>
+    //         </CompoundFormDialog>

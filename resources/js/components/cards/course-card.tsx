@@ -17,7 +17,7 @@ import { router, useForm } from "@inertiajs/react"
 import * as React from "react"
 
 
-import { FormDialog } from "../dialogs/form-dialog"
+import { CompoundFormDialog } from "../dialogs/compound-form-dialog"
 import { Course } from "@/types"
 import { toast } from "sonner"
 
@@ -84,39 +84,40 @@ function ActionButtons({ updateURL, deleteURL, course }: { updateURL: string, de
     return (
         <CardFooter className="flex gap-5">
 
-            <FormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
-                <FormDialog.Header>
-                    <FormDialog.Title>
+            <CompoundFormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
+                <CompoundFormDialog.Header>
+                    <CompoundFormDialog.Title>
                         Edit Course
-                    </FormDialog.Title>
-                    <FormDialog.Description>
+                    </CompoundFormDialog.Title>
+                    <CompoundFormDialog.Description>
                         Make changes to your course here. Click save when you're done.
-                    </FormDialog.Description>
-                </FormDialog.Header>
-                <FormDialog.Form onSubmit={handleEdit} >
-                    <FormDialog.Content>
-                        <FormDialog.InputLabel htmlFor="name">
+                    </CompoundFormDialog.Description>
+                </CompoundFormDialog.Header>
+                <CompoundFormDialog.Form onSubmit={handleEdit} >
+                    <CompoundFormDialog.Content>
+                        <CompoundFormDialog.InputLabel htmlFor="name">
                             Name
-                        </FormDialog.InputLabel>
-                        <FormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
-                        <FormDialog.InputErrorMessage message={errors.name} />
+                        </CompoundFormDialog.InputLabel>
+                        <CompoundFormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
+                        <CompoundFormDialog.InputErrorMessage message={errors.name} />
 
-                    </FormDialog.Content>
-                    <FormDialog.Content>
-                        <FormDialog.InputLabel htmlFor="code">
+                    </CompoundFormDialog.Content>
+                    <CompoundFormDialog.Content>
+                        <CompoundFormDialog.InputLabel htmlFor="code">
                             Course code
-                        </FormDialog.InputLabel>
-                        <FormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
-                        <FormDialog.InputErrorMessage message={errors.code} />
-                    </FormDialog.Content>
-                    <FormDialog.PrimaryButton disabled={processing}>
+                        </CompoundFormDialog.InputLabel>
+                        <CompoundFormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
+                        <CompoundFormDialog.InputErrorMessage message={errors.code} />
+                    </CompoundFormDialog.Content>
+                    <CompoundFormDialog.PrimaryButton disabled={processing}>
                         Save
-                    </FormDialog.PrimaryButton>
-                </FormDialog.Form>
-            </FormDialog>
+                    </CompoundFormDialog.PrimaryButton>
+                </CompoundFormDialog.Form>
+            </CompoundFormDialog>
 
             <Button onClick={() => setOpenForm(true)} variant={'outline'} className="w-full">
                 <Edit2Icon /> Edit        </Button>
+
             <Button onClick={() => setOpen(true)} variant={'destructive'} className="w-full">
                 <Trash2Icon /> Delete
             </Button>
