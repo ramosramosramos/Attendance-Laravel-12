@@ -30,7 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
     Route::post('courses/store', [CourseController::class, 'store'])->name('courses.store');
     Route::post('courses/{course}/update', [CourseController::class, 'update'])->name('courses.update');
-    Route::post('courses/{course}/destroy', [CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::post('courses/{course}/destroy', [CourseController::class, 'destroy'])->name('courses.destroy')->middleware('password.confirm');
 
     Route::get('subjects', [SubjectController::class, 'index'])->name('subjects.index');
     Route::post('subjects/store', [SubjectController::class, 'store'])->name('subjects.store');

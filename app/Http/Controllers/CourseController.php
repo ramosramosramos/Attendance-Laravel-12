@@ -13,12 +13,21 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = $this->user()->courses()->select(['id', 'name', 'code', 'teacher_id'])->get();
 
+        $courses = $this->user()->courses()->select(['id', 'name', 'code', 'teacher_id'])
+            ->get();
         $this->authorize('view', $courses->first());
-
         return inertia('course/index', [
-            'courses' => $courses,
+            'courses' => $courses->map(function ($course) {
+                return [
+                    'id' => $course->id,
+                    'name' => $course->name,
+                    'code' => $course->code,
+                    'teacher_id' => $course->teacher_id,
+                    'updateURL' => route("courses.update", $course->id),
+                    'deleteURL' => route("courses.destroy", $course->id),
+                ];
+            }),
         ]);
     }
 
@@ -44,5 +53,6 @@ class CourseController extends Controller
     {
         $this->authorize('delete', $course);
         $course->deleteOrFail();
+        
     }
 }

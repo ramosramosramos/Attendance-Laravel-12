@@ -9,6 +9,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { useState } from "react"
+import { ConfirmDialog } from "../dialogs/confirm-dialog"
+import { router } from "@inertiajs/react"
 
 
 
@@ -17,7 +20,7 @@ type CardProps = React.ComponentProps<typeof Card>
 
 export function SimpleCard({ children, className, ...props }: CardProps) {
     return (
-        <Card className={cn("w-[380px]", className)} {...props}>
+        <Card className={cn("", className)} {...props}>
 
             {children}
         </Card>
@@ -46,20 +49,27 @@ function Header({ children }: any) {
     );
 }
 
-function ActionButtons() {
+function ActionButtons({updateURL,deleteURL}: {updateURL:string,deleteURL:string}) {
+    const [open,setOpen] = useState(false);
+
     const handleEdit = () => {
         console.log('edit')
     }
     const handleDelete = () => {
-        console.log('delete')
+        router.post(deleteURL,{},{preserveScroll:true})
     }
     return (
         <CardFooter className="flex gap-5">
             <Button onClick={handleEdit} variant={'outline'} className="w-full">
                 <Edit2Icon /> Edit        </Button>
-            <Button onClick={handleDelete} variant={'destructive'} className="w-full">
+            <Button onClick={()=>setOpen(true)} variant={'destructive'} className="w-full">
                 <Trash2Icon /> Delete
             </Button>
+            {open && <ConfirmDialog isOpen={open} title="Are you sure you want to delete this course?"
+                description="This course will be deleted permanently."
+                cancelOnClick={() => setOpen(false)}
+                actionOnClick={handleDelete}
+            />}
         </CardFooter>
     );
 }

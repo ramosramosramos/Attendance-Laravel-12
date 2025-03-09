@@ -73,3 +73,12 @@ export interface Student{
     [key: string]: any;
 
 }
+
+export interface Course{
+    id: number;
+    name: string;
+    code: string;
+    updateURL: string;
+    deleteURL: string;
+    [key:string]: any;
+}

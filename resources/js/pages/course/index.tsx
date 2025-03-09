@@ -2,7 +2,7 @@
 import { SimpleCard } from '@/components/cards/simple-card';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Course, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -12,7 +12,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Index() {
+
+export default function Index({ courses }: { courses: Course[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Courses" />
@@ -29,20 +30,24 @@ export default function Index() {
                     </div>
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-                    <SimpleCard>
+                    <section className='p-5 grid lg:grid-cols-3 gap-5'>
+                        {courses.length > 0 && courses.map((course) => (
+                            <SimpleCard key={course.id}>
 
-                        <SimpleCard.Header>
-                        <SimpleCard.Title>
-                            Title
-                        </SimpleCard.Title>
+                                <SimpleCard.Header>
+                                    <SimpleCard.Title>
+                                        {course.code}
+                                    </SimpleCard.Title>
 
-                        <SimpleCard.Description>
-                            Description
-                        </SimpleCard.Description>
+                                    <SimpleCard.Description>
+                                       {course.name}
+                                    </SimpleCard.Description>
 
-                        </SimpleCard.Header>
-                        <SimpleCard.ActionButtons/>
-                    </SimpleCard>
+                                </SimpleCard.Header>
+                                <SimpleCard.ActionButtons deleteURL={course.deleteURL} updateURL={course.updateURL} />
+                            </SimpleCard>
+                        ))}
+                    </section>
 
                 </div>
             </div>
