@@ -23,7 +23,7 @@ class UpdateSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', Rule::unique('subject')->ignore($this->subject)],
+            'name' => ['required', 'string', Rule::unique('subjects')->ignore($this->subject)],
 
         ];
     }

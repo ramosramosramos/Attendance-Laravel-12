@@ -14,14 +14,14 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = $this->user()->subjects()->select(['id', 'name', 'teacher_id'])
-        ->get()->map(function ($subject){
-                      return [
-                        'id'=>$subject->id,
-                        'name'=>$subject->name,
-                        'updateURL'=>route("subjects.update",$subject),
-                        'deleteURL'=>route("subjects.destroy",$subject),
-                      ];
-        });
+            ->get()->map(function ($subject) {
+                return [
+                    'id' => $subject->id,
+                    'name' => $subject->name,
+                    'updateURL' => route('subjects.update', $subject),
+                    'deleteURL' => route('subjects.destroy', $subject),
+                ];
+            });
 
         return inertia('subject/index', [
             'subjects' => $subjects,
@@ -30,7 +30,7 @@ class SubjectController extends Controller
 
     public function store(StoreSubjectRequest $request)
     {
-        Subject::store($request->validated());
+        Subject::create(array_merge($request->validated(), ['teacher_id' => $this->user()->id]));
     }
 
     /**

@@ -14,7 +14,6 @@ class CourseController extends Controller
     public function index()
     {
 
-
         $courses = $this->user()->courses()->select(['id', 'name', 'code', 'teacher_id'])
             ->get();
         $this->authorize('view', $courses->first());
