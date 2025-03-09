@@ -23,7 +23,7 @@ class YearLevelController extends Controller
         });
 
         return inertia('year-level/index', [
-            'yearLevels' => $yearLevels,
+            'year_levels' => $yearLevels,
         ]);
     }
 
@@ -32,7 +32,7 @@ class YearLevelController extends Controller
      */
     public function store(StoreYearLevelRequest $request)
     {
-        YearLevel::create($request->validated());
+        YearLevel::create(array_merge($request->validated(), ['teacher_id' => $this->user()->id]));
     }
 
     /**
