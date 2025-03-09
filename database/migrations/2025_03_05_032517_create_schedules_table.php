@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Course;
+use App\Models\Section;
+use App\Models\Subject;
 use App\Models\User;
+use App\Models\YearLevel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +19,10 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained('users')->cascadeOnDelete();
+            $table->foreignIdFor(Course::class)->constrained('courses')->cascadeOnDelete();
+            $table->foreignIdFor(Subject::class)->constrained('subjects')->cascadeOnDelete();
+            $table->foreignIdFor(Section::class)->constrained('sections')->cascadeOnDelete();
+            $table->foreignIdFor(YearLevel::class)->constrained('sections')->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('backgroundColor')->nullable();

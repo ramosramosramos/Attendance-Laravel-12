@@ -22,6 +22,10 @@ class ScheduleFactory extends Factory
 
         return [
             'user_id' => fake()->randomElement([1, 2]),
+            'course_id'=>fake()->randomElement([1, 2,3]),
+            'subject_id'=>fake()->randomElement([1, 2,3]),
+            'section_id'=>fake()->randomElement([1, 2,3]),
+            'year_level_id'=>fake()->randomElement([1, 2,3]),
             'title' => fake()->realText(20),
             'description' => fake()->realText(50),
             'borderColor' => fake()->randomElement(['#ffffff59', '#ffffff', '']),
