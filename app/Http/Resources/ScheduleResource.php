@@ -28,6 +28,10 @@ class ScheduleResource extends JsonResource
                 'start_time' => Carbon::parse($this->start_time)->toDayDateTimeString(),
                 'end_time' => Carbon::parse($this->end_time)->toDayDateTimeString(),
                 'date' => Carbon::parse($this->date)->toFormattedDateString(),
+                'course_name' => $this->course_name,
+                'subject_name' => $this->subject_name,
+                'section_name' => $this->section_name,
+                'year_level_name' => $this->year_level_name,
             ],
             'date' => $this->date,
         ];

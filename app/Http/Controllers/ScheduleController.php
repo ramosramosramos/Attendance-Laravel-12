@@ -28,6 +28,10 @@ class ScheduleController extends Controller
             'end_time',
             'user_id',
             'date',
+            'course_name',
+            'subject_name',
+            'section_name',
+            'year_level_name',
         ])->get();
 
         return inertia('schedule/index', [

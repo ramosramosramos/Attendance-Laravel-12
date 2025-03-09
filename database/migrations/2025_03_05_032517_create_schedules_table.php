@@ -19,10 +19,6 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained('users')->cascadeOnDelete();
-            $table->foreignIdFor(Course::class)->constrained('courses')->cascadeOnDelete();
-            $table->foreignIdFor(Subject::class)->constrained('subjects')->cascadeOnDelete();
-            $table->foreignIdFor(Section::class)->constrained('sections')->cascadeOnDelete();
-            $table->foreignIdFor(YearLevel::class)->constrained('sections')->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('backgroundColor')->nullable();
@@ -31,6 +27,14 @@ return new class extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->date('date')->nullable();
+            $table->string('course_name');
+            $table->string('subject_name');
+            $table->string('section_name');
+            $table->string('year_level_name');
+            // $table->foreignIdFor(Course::class)->constrained('courses')->cascadeOnDelete();
+            // $table->foreignIdFor(Subject::class)->constrained('subjects')->cascadeOnDelete();
+            // $table->foreignIdFor(Section::class)->constrained('sections')->cascadeOnDelete();
+            // $table->foreignIdFor(YearLevel::class)->constrained('sections')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
