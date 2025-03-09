@@ -8,6 +8,7 @@ use App\Http\Resources\ScheduleResource;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ScheduleController extends Controller
 {
@@ -44,7 +45,10 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return inertia('schedule/create');
+
+        return inertia('schedule/create', [
+            'scheduleProps' => $this->getScheduleProps(),
+        ]);
     }
 
     /**
@@ -59,7 +63,10 @@ class ScheduleController extends Controller
     {
         $this->authorize('update', $schedule);
 
-        return inertia('schedule/edit', ['schedule' => $schedule]);
+        return inertia('schedule/edit', [
+            'schedule' => $schedule,
+            'scheduleProps' => $this->getScheduleProps(),
+        ]);
     }
 
     /**
@@ -90,5 +97,18 @@ class ScheduleController extends Controller
     {
         $this->authorize('delete', $schedule);
         $schedule->delete();
+    }
+
+
+    private function getScheduleProps()
+    {
+        return  Cache::remember('scheduleProps', now()->addHours(24), function () {
+            return [
+                'courses' =>   $this->user()->courses()->select('name')->get(),
+                'subjects' => $this->user()->subjects()->select('name')->get(),
+                'sections' => $this->user()->sections()->select('name')->get(),
+                'year_levels' => $this->user()->yearLevels()->select('name')->get(),
+            ];
+        });
     }
 }
