@@ -105,34 +105,102 @@ CompoundFormDialog.InputErrorMessage = InputErrorMessage;
 
 
 // how to use
+// default-form-dialog.tsx
+// default-form-dialog.tsx
 
-    //   <CompoundFormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
-    //             <CompoundFormDialog.Header>
-    //                 <CompoundFormDialog.Title>
-    //                     Edit Course
-    //                 </CompoundFormDialog.Title>
-    //                 <CompoundFormDialog.Description>
-    //                     Make changes to your course here. Click save when you're done.
-    //                 </CompoundFormDialog.Description>
-    //             </CompoundFormDialog.Header>
-    //             <CompoundFormDialog.Form onSubmit={handleEdit} >
-    //                 <CompoundFormDialog.Content>
-    //                     <CompoundFormDialog.InputLabel htmlFor="name">
-    //                         Name
-    //                     </CompoundFormDialog.InputLabel>
-    //                     <CompoundFormDialog.InputField defaultValue={data.name} onChange={(e) => setData('name', e.target.value)} id="name" />
-    //                     <CompoundFormDialog.InputErrorMessage message={errors.name} />
+//   import { useState } from "react";
+//   import { CompoundFormDialog } from "../dialogs/compound-form-dialog";
+//   import { useForm } from "@inertiajs/react";
+//   import { toast } from "sonner";
+//   import { Button } from "../ui/button";
+//   import { cn } from "@/lib/utils";
+//   interface Option {
+//       name: string;
+//       label: string;
+//   }
+//   interface DefaultCompoundFormDialogProps {
+//       title?: string;
+//       description?: string;
+//       buttonText?: string;
+//       children?: any;
+//       uri?: string | undefined;
+//       inputOptions: Option[];
+//       formTypeValues: any
+//       messagesSuccess?: string;
+//       className?: string;
+//       variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined;
+//   }
 
-    //                 </CompoundFormDialog.Content>
-    //                 <CompoundFormDialog.Content>
-    //                     <CompoundFormDialog.InputLabel htmlFor="code">
-    //                         Course code
-    //                     </CompoundFormDialog.InputLabel>
-    //                     <CompoundFormDialog.InputField defaultValue={data.code} onChange={(e) => setData('code', e.target.value)} id="code" />
-    //                     <CompoundFormDialog.InputErrorMessage message={errors.code} />
-    //                 </CompoundFormDialog.Content>
-    //                 <CompoundFormDialog.PrimaryButton disabled={processing}>
-    //                     Save
-    //                 </CompoundFormDialog.PrimaryButton>
-    //             </CompoundFormDialog.Form>
-    //         </CompoundFormDialog>
+//   export default function DefaultFormDialog({ children, title, description, buttonText,
+//       uri, inputOptions, formTypeValues, messagesSuccess, className, variant }: DefaultCompoundFormDialogProps) {
+
+//       const [openForm, setOpenForm] = useState(false);
+//       const { data, setData, post, processing, errors, reset } = useForm<any>({
+//           ...formTypeValues,
+//       });
+//       const handleSubmit = (e: any) => {
+//           e.preventDefault();
+//           post(uri ?? '', {
+//               preserveScroll: true,
+//               onSuccess: () => {
+//                   toast.success(messagesSuccess ? messagesSuccess : 'Successfully submitted.');
+//                   reset();
+//                   setOpenForm(false);
+//               }
+//           });
+//       }
+//       return (
+//           <>
+//               <CompoundFormDialog openDialog={openForm} setOpenDialog={setOpenForm}>
+//                   <CompoundFormDialog.Header>
+//                       <CompoundFormDialog.Title>
+//                           {title ? title : ''}
+//                       </CompoundFormDialog.Title>
+//                       <CompoundFormDialog.Description>
+//                           {description ? description : ''}
+//                       </CompoundFormDialog.Description>
+//                   </CompoundFormDialog.Header>
+//                   <CompoundFormDialog.Form onSubmit={handleSubmit} >
+//                       {inputOptions?.map((value) => (
+//                           <CompoundFormDialog.Content key={value.name}>
+//                               <CompoundFormDialog.InputLabel htmlFor={value.name}>
+//                                   {value.label}
+//                               </CompoundFormDialog.InputLabel>
+//                               <CompoundFormDialog.InputField defaultValue={data[value.name]} onChange={(e) => setData(value.name, e.target.value)} id={value.name} />
+//                               <CompoundFormDialog.InputErrorMessage message={errors[value.name]} />
+//                           </CompoundFormDialog.Content>
+//                       ))}
+
+//                       <CompoundFormDialog.PrimaryButton disabled={processing}>
+//                           {buttonText ? buttonText : 'Save'}
+//                       </CompoundFormDialog.PrimaryButton>
+//                   </CompoundFormDialog.Form>
+//               </CompoundFormDialog>
+//               <Button onClick={() => setOpenForm(true)} variant={variant} className={cn('w-full', className)}>
+//                   {children}
+//               </Button>
+//           </>
+//       );
+
+
+//   }
+
+
+
+/////to this
+/////to this
+/////to this
+/////to this
+
+
+// <DefaultFormDialog
+//             title='Create courses'
+//             description="Use this to create course. Click 'Create' when you're done."
+//             buttonText='Create'
+//             inputOptions={[{ name: 'name', label: 'Name', }, { name: 'code', label: 'Code', }]}
+//             formTypeValues={{ name: '', code: '' }}
+//             uri={route('courses.store')}
+//             messagesSuccess='Your new course has been successfully added.'
+//         >
+//             <PlusIcon /> Create new course
+//         </DefaultFormDialog>
