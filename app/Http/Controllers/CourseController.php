@@ -53,6 +53,8 @@ class CourseController extends Controller
     {
         $this->authorize('delete', $course);
         $course->deleteOrFail();
-        
+
+        return back();
+
     }
 }

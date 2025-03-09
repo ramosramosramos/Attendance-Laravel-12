@@ -7,6 +7,7 @@ use App\Models\Schedule;
 use App\Models\Section;
 use App\Models\Subject;
 use App\Models\YearLevel;
+use App\Observers\CourseObserver;
 use App\Policies\CoursePolicy;
 use App\Policies\SchedulePolicy;
 use App\Policies\SectionPolicy;
@@ -31,11 +32,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-
+        // policies
         Gate::policy(Schedule::class, SchedulePolicy::class);
         Gate::policy(Course::class, CoursePolicy::class);
         Gate::policy(Subject::class, SubjectPolicy::class);
         Gate::policy(Section::class, SectionPolicy::class);
         Gate::policy(YearLevel::class, YearLevelPolicy::class);
+
+
+        //observers
+        Course::observe(CourseObserver::class);
     }
 }
