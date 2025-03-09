@@ -8,6 +8,7 @@ use App\Models\Section;
 use App\Models\Subject;
 use App\Models\YearLevel;
 use App\Observers\CourseObserver;
+use App\Observers\ScheduleObserver;
 use App\Policies\CoursePolicy;
 use App\Policies\SchedulePolicy;
 use App\Policies\SectionPolicy;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         //observers
+        Schedule::observe(ScheduleObserver::class);
         Course::observe(CourseObserver::class);
     }
 }

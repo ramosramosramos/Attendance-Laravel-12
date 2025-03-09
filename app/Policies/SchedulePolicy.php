@@ -8,12 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 class SchedulePolicy
 {
-    public function view(User $user, Schedule $schedule): Response
-    {
 
-        return $user->id === $schedule->user_id ? Response::allow()
-            : Response::denyAsNotFound();
-    }
 
     /**
      * Determine whether the user can update the model.

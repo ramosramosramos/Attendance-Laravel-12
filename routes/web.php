@@ -19,9 +19,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::resource('/schedules', ScheduleController::class)->except(['update', 'destroy']);
-    Route::post('/schedules/{schedule}/update', [ScheduleController::class, 'update'])->name('schedules.update');
-    Route::post('/schedules/{schedule}/destroy', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
-    Route::post('/schedules/{schedule}/drag', [ScheduleController::class, 'drag'])->name('schedules.drag');
+    Route::post('schedules/{schedule}/update', [ScheduleController::class, 'update'])->name('schedules.update');
+    Route::post('schedules/{schedule}/destroy', [ScheduleController::class, 'destroy'])->name('schedules.destroy')->middleware('password.confirm');
+    Route::post('schedules/{schedule}/drag', [ScheduleController::class, 'drag'])->name('schedules.drag');
 
     Route::resource('/students', StudentController::class)->except(['update', 'destroy']);
     Route::post('/students/{student}/update', [StudentController::class, 'update'])->name('students.update');

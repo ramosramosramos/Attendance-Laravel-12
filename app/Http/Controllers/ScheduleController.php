@@ -29,7 +29,6 @@ class ScheduleController extends Controller
             'user_id',
             'date',
         ])->get();
-        $this->authorize('view', $schedule->first());
 
         return inertia('schedule/index', [
             'schedules' => ScheduleResource::collection($schedule),
