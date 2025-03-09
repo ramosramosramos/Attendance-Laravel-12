@@ -13,8 +13,14 @@ class YearLevelController extends Controller
      */
     public function index()
     {
-        $yearLevels = $this->user()->yearLevels()->select(['id', 'name', 'teacher_id'])->get();
-        $this->authorize('view', $yearLevels->first());
+        $yearLevels = $this->user()->yearLevels()->select(['id', 'name', 'teacher_id'])->get()->map(function ($yearLevel) {
+            return [
+                'id' => $yearLevel->id,
+                'name' => $yearLevel->name,
+                'updateURL' => route('year_levels.update', $yearLevel),
+                'deleteURL' => route('year_levels.destroy', $yearLevel),
+            ];
+        });
 
         return inertia('year-level/index', [
             'yearLevels' => $yearLevels,
