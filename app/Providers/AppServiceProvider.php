@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Course;
+use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\Section;
 use App\Models\Subject;
@@ -13,6 +14,7 @@ use App\Observers\SectionObserver;
 use App\Observers\SubjectObserver;
 use App\Observers\YearLevelObserver;
 use App\Policies\CoursePolicy;
+use App\Policies\RoomPolicy;
 use App\Policies\SchedulePolicy;
 use App\Policies\SectionPolicy;
 use App\Policies\SubjectPolicy;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Subject::class, SubjectPolicy::class);
         Gate::policy(Section::class, SectionPolicy::class);
         Gate::policy(YearLevel::class, YearLevelPolicy::class);
+        Gate::policy(Room::class, RoomPolicy::class);
 
         // observers
         Schedule::observe(ScheduleObserver::class);
