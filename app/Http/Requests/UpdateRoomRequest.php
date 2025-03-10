@@ -23,7 +23,7 @@ class UpdateRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required', 'string',Rule::unique('rooms')->ignore($this->room)],
+            'name' => ['required', 'string', Rule::unique('rooms')->ignore($this->room)],
         ];
     }
 }

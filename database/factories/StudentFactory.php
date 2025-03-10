@@ -22,6 +22,7 @@ class StudentFactory extends Factory
         $courses = Course::all();
         $sections = Section::all();
         $yearLevels = YearLevel::all();
+
         return [
             'teacher_id' => fake()->randomElement([1, 2]),
             'course_id' => $courses->random()->id,

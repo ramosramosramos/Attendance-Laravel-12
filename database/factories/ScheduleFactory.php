@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Course;
 use App\Models\Section;
 use App\Models\Subject;
-use App\Models\YearLevel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +22,6 @@ class ScheduleFactory extends Factory
     {
         $number = fake()->numberBetween(1, 30);
         $date = fake()->randomElement([now()->addDays($number)]); // Generate a random date
-
 
         return [
             'user_id' => fake()->randomElement([1, 2]),

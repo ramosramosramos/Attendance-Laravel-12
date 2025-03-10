@@ -6,6 +6,7 @@ use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Schedule;
+use App\Services\ScheduleService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -15,36 +16,11 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ScheduleService $scheduleService)
     {
 
-        $schedule = $this->user()->schedules()
-            ->with([
-                'course',
-                'subject',
-                'section',
-                'yearLevel',
-                'room',
-            ])->select([
-            'id',
-            'course_id',
-            'subject_id',
-            'section_id',
-            'year_level_id',
-            'room_id',
-            'title',
-            'description',
-            'borderColor',
-            'backgroundColor',
-            'textColor',
-            'start_time',
-            'end_time',
-            'user_id',
-            'date',
-        ])->get();
-
         return inertia('schedule/index', [
-            'schedules' => ScheduleResource::collection($schedule),
+            'schedules' => ScheduleResource::collection($scheduleService->getTeacherSchedules($this->user())),
         ]);
     }
 

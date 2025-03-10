@@ -37,6 +37,7 @@ class Schedule extends Model
     {
         return $this->belongsTo(YearLevel::class);
     }
+
     public function room()
     {
         return $this->belongsTo(Room::class);

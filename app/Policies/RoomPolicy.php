@@ -8,19 +8,16 @@ use Illuminate\Auth\Access\Response;
 
 class RoomPolicy
 {
-
-
     /**
      * Determine whether the user can create models.
      */
-
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Room $room): Response
     {
-       return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -28,7 +25,7 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room): Response
     {
-       return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -36,7 +33,7 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room): Response
     {
-       return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 
     /**
@@ -44,6 +41,6 @@ class RoomPolicy
      */
     public function forceDelete(User $user, Room $room): Response
     {
-       return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
+        return $user->id == $room->teacher_id ? Response::allow() : Response::denyAsNotFound();
     }
 }
