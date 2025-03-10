@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
-import { ScheduleForm, ScheduleProps, SharedData, type BreadcrumbItem } from '@/types';
+import { ScheduleForm, ShareProps, SharedData, type BreadcrumbItem } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { toast } from 'sonner';
@@ -21,7 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 
-export default function Create({ scheduleProps }: { scheduleProps: ScheduleProps }) {
+export default function Create({ scheduleProps }: { scheduleProps: ShareProps }) {
     const { user } = usePage<SharedData>().props.auth;
 
     const { data, setData, post, processing, errors, reset, clearErrors } = useForm<ScheduleForm>({

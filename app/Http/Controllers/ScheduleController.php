@@ -7,12 +7,14 @@ use App\Http\Requests\UpdateScheduleRequest;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Schedule;
 use App\Services\ScheduleService;
+use App\Trait\UserTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class ScheduleController extends Controller
 {
+    use UserTrait;
     /**
      * Display a listing of the resource.
      * This cache the schedule from ScheduleService
@@ -31,8 +33,10 @@ class ScheduleController extends Controller
     public function create()
     {
 
+
+
         return inertia('schedule/create', [
-            'scheduleProps' => $this->getScheduleProps(),
+            'scheduleProps' => $this->getSharedProps($this->user()),
         ]);
     }
 
@@ -47,10 +51,9 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         $this->authorize('update', $schedule);
-
         return inertia('schedule/edit', [
             'schedule' => $schedule,
-            'scheduleProps' => $this->getScheduleProps(),
+            'scheduleProps' => $this->getSharedProps($this->user()),
         ]);
     }
 
@@ -84,16 +87,16 @@ class ScheduleController extends Controller
         $schedule->delete();
     }
 
-    private function getScheduleProps()
-    {
-        return Cache::remember('scheduleProps', now()->addHours(24), function () {
-            return [
-                'courses' => $this->user()->courses()->select(['id', 'name'])->get(),
-                'subjects' => $this->user()->subjects()->select(['id', 'name'])->get(),
-                'sections' => $this->user()->sections()->select(['id', 'name'])->get(),
-                'year_levels' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
-                'rooms' => $this->user()->rooms()->select(['id', 'name'])->get(),
-            ];
-        });
-    }
+    // private function getSharedProps($this->user())
+    // {
+    //     return Cache::remember('sharedProps' . $this->user()->id, now()->addHours(24), function () {
+    //         return [
+    //             'courses' => $this->user()->courses()->select(['id', 'name'])->get(),
+    //             'subjects' => $this->user()->subjects()->select(['id', 'name'])->get(),
+    //             'sections' => $this->user()->sections()->select(['id', 'name'])->get(),
+    //             'year_levels' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
+    //             'rooms' => $this->user()->rooms()->select(['id', 'name'])->get(),
+    //         ];
+    //     });
+    // }
 }

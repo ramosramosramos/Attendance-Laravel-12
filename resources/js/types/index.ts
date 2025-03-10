@@ -99,7 +99,7 @@ export interface YearLevel extends SharedTypes{
 export interface Room extends SharedTypes{
 
 }
-export interface ScheduleProps{
+export interface ShareProps{
     courses:Course[];
     subjects:Subject[];
     sections: Section[];

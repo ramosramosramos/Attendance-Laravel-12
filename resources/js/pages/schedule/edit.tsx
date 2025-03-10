@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
-import { Schedule, ScheduleForm, ScheduleProps, SharedData, type BreadcrumbItem } from '@/types';
+import { Schedule, ScheduleForm, ShareProps, SharedData, type BreadcrumbItem } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { toast } from 'sonner';
@@ -21,7 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 
-export default function Edit({ schedule, scheduleProps }: { schedule: Schedule, scheduleProps: ScheduleProps }) {
+export default function Edit({ schedule, scheduleProps }: { schedule: Schedule, scheduleProps: ShareProps }) {
     const { user } = usePage<SharedData>().props.auth;
 
     const { data, setData, post, processing, errors, reset, clearErrors } = useForm<ScheduleForm>({
@@ -34,10 +34,11 @@ export default function Edit({ schedule, scheduleProps }: { schedule: Schedule, 
         backgroundColor: schedule.backgroundColor,
         borderColor: schedule.borderColor,
         textColor: schedule.textColor,
-        course_id:String(schedule.course_id),
+        course_id: String(schedule.course_id),
         subject_id: String(schedule.subject_id),
         section_id: String(schedule.section_id),
         year_level_id: String(schedule.year_level_id),
+        room_id: String(schedule.room_id),
     })
 
     const handleSubmit: FormEventHandler = (e) => {
@@ -168,6 +169,22 @@ export default function Edit({ schedule, scheduleProps }: { schedule: Schedule, 
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
                                 <InputError message={errors.year_level_id} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='room_id'>Room</Label>
+                                <DefaultSelect defaultValue={data.room_id ?? ''} onValueChange={(e) => setData('room_id', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a room" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.rooms && scheduleProps.rooms.map((room, index) => (
+                                            <DefaultSelect.Item key={index} value={String(room.id)}>
+                                                {room.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.room_id} />
                             </div>
                         </section>
 
