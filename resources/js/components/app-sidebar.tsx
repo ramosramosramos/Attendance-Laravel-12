@@ -54,6 +54,12 @@ const footerNavItems: NavItem[] = [
         baseURL: '/year_levels',
         icon: Circle,
     },
+    {
+        title: 'Rooms',
+        url: route('rooms.index'),
+        baseURL: '/rooms',
+        icon: Circle,
+    },
 ];
 
 export function AppSidebar() {
