@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enum\ThenResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -28,11 +29,11 @@ class ScheduleResource extends JsonResource
                 'start_time' => Carbon::parse($this->start_time)->toDayDateTimeString(),
                 'end_time' => Carbon::parse($this->end_time)->toDayDateTimeString(),
                 'date' => Carbon::parse($this->date)->toFormattedDateString(),
-                'course_name' => $this->course?->name ?? 'No course selected or it has been deleted.',
-                'subject_name' => $this->subject?->name ?? 'No subject selected or it has been deleted.',
-                'section_name' => $this->section?->name ?? 'No section selected or it has been deleted.',
-                'year_level_name' => $this->yearLevel?->name ?? 'No year level selected or it has been deleted.',
-                'room_name' => $this->room?->name ?? 'No room selected or it has been deleted.',
+                'course_name' => $this->course?->name ?? ThenResponse::NO_COURSE,
+                'subject_name' => $this->subject?->name ?? ThenResponse::NO_SUBJECT,
+                'section_name' => $this->section?->name ?? ThenResponse::NO_SECTION,
+                'year_level_name' => $this->yearLevel?->name ?? ThenResponse::NO_YEAR_LEVEL,
+                'room_name' => $this->room?->name ?? ThenResponse::NO_ROOM,
             ],
             'date' => $this->date,
         ];

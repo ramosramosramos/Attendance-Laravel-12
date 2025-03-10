@@ -22,7 +22,6 @@ class StudentController extends Controller
                 'course_id',
                 'year_level_id',
                 'section_id',
-                'created_at',
             ]
         )->paginate(21);
 
