@@ -1,12 +1,13 @@
 
 import InputError from '@/components/input-error';
+import DefaultSelect from '@/components/inputs/default-select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
-import { SharedData, type BreadcrumbItem } from '@/types';
+import { ScheduleProps, SharedData, type BreadcrumbItem } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { toast } from 'sonner';
@@ -29,10 +30,14 @@ interface FormCreate {
     backgroundColor: string;
     borderColor: string;
     textColor: string;
+    course_name: string;
+    subject_name: string;
+    section_name: string;
+    year_level_name: string;
     [key: string]: any;
     // :Date;
 }
-export default function Create() {
+export default function Create({ scheduleProps }: { scheduleProps: ScheduleProps }) {
     const { user } = usePage<SharedData>().props.auth;
 
     const { data, setData, post, processing, errors, reset, clearErrors } = useForm<FormCreate>({
@@ -45,13 +50,17 @@ export default function Create() {
         backgroundColor: '#8A2BE2',
         borderColor: '#FAEBD7',
         textColor: '#FAEBD7',
+        course_name: '',
+        subject_name: '',
+        section_name: '',
+        year_level_name: '',
     })
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('schedules.store'), {
             preserveScroll: true,
-            showProgress:false,
+            showProgress: false,
             onSuccess: () => {
                 toast.success("Your new schedule has been successfully added.")
                 setTimeout(() => {
@@ -61,6 +70,7 @@ export default function Create() {
                 reset();
             }
         })
+
     }
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -109,6 +119,70 @@ export default function Create() {
                                     type="datetime-local"
                                 />
                                 <InputError message={errors.end_time} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='course_name'>Course</Label>
+                                <DefaultSelect defaultValue={data.course_name ?? ''} onValueChange={(e) => setData('course_name', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a course" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.courses && scheduleProps.courses.map((course, index) => (
+                                            <DefaultSelect.Item key={index} value={course.name}>
+                                             {course.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.course_name} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='subject_name'>Subject</Label>
+                                <DefaultSelect defaultValue={data.subject_name ?? ''} onValueChange={(e) => setData('subject_name', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a subject" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.subjects && scheduleProps.subjects.map((subject, index) => (
+                                            <DefaultSelect.Item key={index} value={subject.name}>
+                                             {subject.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.subject_name} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='section_name'>Section</Label>
+                                <DefaultSelect defaultValue={data.section_name ?? ''} onValueChange={(e) => setData('section_name', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a section" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.sections && scheduleProps.sections.map((section, index) => (
+                                            <DefaultSelect.Item key={index} value={section.name}>
+                                             {section.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.section_name} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='year_level_name'>Year level</Label>
+                                <DefaultSelect defaultValue={data.year_level_name ?? ''} onValueChange={(e) => setData('year_level_name', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a year level" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.year_levels && scheduleProps.year_levels.map((year_level, index) => (
+                                            <DefaultSelect.Item key={index} value={year_level.name}>
+                                             {year_level.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.year_level_name} />
                             </div>
                         </section>
 

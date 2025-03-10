@@ -31,6 +31,10 @@ class StoreScheduleRequest extends FormRequest
             'start_time' => ['required', 'date', 'before:end_time'],
             'end_time' => ['required', 'date', 'after:start_time'],
             'date' => ['required', 'date'],
+            'course_name'=>['required', 'string'],
+            'subject_name'=>['required', 'string'],
+            'section_name'=>['required', 'string'],
+            'year_level_name'=>['required', 'string'],
         ];
 
     }

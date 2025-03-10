@@ -26,7 +26,7 @@ class SubjectSeeder extends Seeder
                 ],
                 [
                     'name' => 'English',
-                    'teacher_id' => 2,
+                    'teacher_id' => 1,
                 ],
 
             ]

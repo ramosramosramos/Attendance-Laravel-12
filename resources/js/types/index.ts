@@ -95,3 +95,9 @@ export interface Section extends SharedTypes{
 export interface YearLevel extends SharedTypes{
 
 }
+export interface ScheduleProps{
+    courses:Course[];
+    subjects:Subject[];
+    sections: Section[];
+    year_levels: YearLevel[];
+}
