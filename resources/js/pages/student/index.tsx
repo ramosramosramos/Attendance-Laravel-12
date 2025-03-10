@@ -2,6 +2,7 @@
 
 import { StudentCard } from '@/components/cards/student-card';
 import LinearLoading from '@/components/loadings/linear-loading';
+import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
 import { Meta, Student, type BreadcrumbItem } from '@/types';
 import { Head, WhenVisible } from '@inertiajs/react';
@@ -21,8 +22,8 @@ export default function Index({students}:{students:{data:Student[]}}) {
              <AppLayout breadcrumbs={breadcrumbs}>
                    <Head title="Sections" />
                    <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                       <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-
+                       <div className="">
+                        <Button variant={'outline'}>Add new student</Button>
                        </div>
                        <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
                            <LinearLoading data={students}>
