@@ -6,8 +6,9 @@ class ScheduleService
 {
     public function getTeacherSchedules($user)
     {
+       return cache()->remember('teacherSchedules'.$user->id,now()->addHours(24),function() use($user){
 
-        return $user->schedules()
+            return $user->schedules()
             ->with([
                 'course',
                 'subject',
@@ -31,5 +32,7 @@ class ScheduleService
                 'user_id',
                 'date',
             ])->get();
+        });
+
     }
 }

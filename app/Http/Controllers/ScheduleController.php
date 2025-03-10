@@ -15,6 +15,7 @@ class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * This cache the schedule from ScheduleService
      */
     public function index(ScheduleService $scheduleService)
     {
