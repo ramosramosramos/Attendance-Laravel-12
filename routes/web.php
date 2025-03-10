@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
@@ -46,6 +47,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('year_levels/store', [YearLevelController::class, 'store'])->name('year_levels.store');
     Route::post('year_levels/{year_level}/update', [YearLevelController::class, 'update'])->name('year_levels.update');
     Route::post('year_levels/{year_level}/destroy', [YearLevelController::class, 'destroy'])->name('year_levels.destroy')->middleware('password.confirm');
+
+    Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
+    Route::post('rooms/store', [RoomController::class, 'store'])->name('rooms.store');
+    Route::post('rooms/{room}/update', [RoomController::class, 'update'])->name('rooms.update');
+    Route::post('rooms/{room}/destroy', [RoomController::class, 'destroy'])->name('rooms.destroy')->middleware('password.confirm');
 
 });
 
