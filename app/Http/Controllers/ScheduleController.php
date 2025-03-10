@@ -18,8 +18,18 @@ class ScheduleController extends Controller
     public function index()
     {
 
-        $schedule = $this->user()->schedules()->select([
+        $schedule = $this->user()->schedules()
+        ->with([
+            'course',
+            'subject',
+            'section',
+            'yearLevel',
+            ])->select([
             'id',
+            'course_id',
+            'subject_id',
+            'section_id',
+            'year_level_id',
             'title',
             'description',
             'borderColor',
@@ -29,10 +39,6 @@ class ScheduleController extends Controller
             'end_time',
             'user_id',
             'date',
-            'course_name',
-            'subject_name',
-            'section_name',
-            'year_level_name',
         ])->get();
 
         return inertia('schedule/index', [

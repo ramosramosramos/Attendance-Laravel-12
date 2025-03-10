@@ -17,4 +17,16 @@ class Schedule extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
+    public function subject(){
+        return $this->belongsTo(Subject::class);
+    }
+    public function section(){
+        return $this->belongsTo(Section::class);
+    }
+    public function yearLevel(){
+        return $this->belongsTo(YearLevel::class);
+    }
 }
