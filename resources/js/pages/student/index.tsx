@@ -17,7 +17,7 @@ interface StudentProps{
 }
 export default function Index({students}:{students:StudentProps}) {
 
-    console.log(students.meta.links);
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Students" />

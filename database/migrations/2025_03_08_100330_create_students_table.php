@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->startingValue(1000);
             $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
             $table->foreignId('course_id')->nullable()->constrained('courses')->nullOnDelete(); //
-            $table->foreignId('section_id')->nullable()->constrained('sections')->nullOnDelete(); //
+            $table->foreignId('section_id')->nullable()->constrained(table: 'sections')->nullOnDelete(); //
             $table->foreignId('year_level_id')->nullable()->constrained('year_levels')->nullOnDelete(); //
             $table->string('name');
             $table->string('email')->nullable();

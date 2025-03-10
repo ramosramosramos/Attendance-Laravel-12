@@ -15,10 +15,13 @@ class StudentController extends Controller
     public function index()
     {
 
-        $students = $this->user()->students()->select(
+        $students = $this->user()->students()->with(['course:id,name','section:id,name','yearLevel:id,name'])->select(
             [
                 'id',
                 'name',
+                'course_id',
+                'year_level_id',
+                'section_id',
                 'created_at',
             ]
         )->paginate(21);

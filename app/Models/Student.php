@@ -13,8 +13,23 @@ class Student extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function yearLevel()
+    {
+        return $this->belongsTo(YearLevel::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 }
