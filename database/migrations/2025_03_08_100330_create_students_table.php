@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id()->startingValue(1000);
             $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->foreignId('course_id')->nullable()->constrained('courses')->nullOnDelete(); //
+            $table->foreignId('section_id')->nullable()->constrained('sections')->nullOnDelete(); //
+            $table->foreignId('year_level_id')->nullable()->constrained('year_levels')->nullOnDelete(); //
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
@@ -21,11 +24,15 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
-            $table->string('year_level')->nullable();
-            $table->string('course')->nullable();
             $table->string('guardian')->nullable();
             $table->string('guardian_phone')->nullable();
             $table->softDeletes();
+            $table->timestamps();
+        });
+        Schema::create('has_subjects', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
