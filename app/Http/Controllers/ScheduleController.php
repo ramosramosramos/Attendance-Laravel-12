@@ -115,7 +115,7 @@ class ScheduleController extends Controller
                 'subjects' => $this->user()->subjects()->select(['id', 'name'])->get(),
                 'sections' => $this->user()->sections()->select(['id', 'name'])->get(),
                 'year_levels' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
-                'rooms' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
+                'rooms' => $this->user()->rooms()->select(['id', 'name'])->get(),
             ];
         });
     }

@@ -95,11 +95,15 @@ export interface Section extends SharedTypes{
 export interface YearLevel extends SharedTypes{
 
 }
+export interface Room extends SharedTypes{
+
+}
 export interface ScheduleProps{
     courses:Course[];
     subjects:Subject[];
     sections: Section[];
     year_levels: YearLevel[];
+    rooms: Room[];
 }
 
 
@@ -118,5 +122,6 @@ export interface ScheduleForm{
     subject_id: string;
     section_id: string;
     year_level_id: string;
+    room_id: string;
     [key: string]: any;
 }

@@ -38,6 +38,7 @@ export default function Create({ scheduleProps }: { scheduleProps: ScheduleProps
         subject_id: '',
         section_id: '',
         year_level_id: '',
+        room_id: '',
     })
 
     const handleSubmit: FormEventHandler = (e) => {
@@ -167,6 +168,22 @@ export default function Create({ scheduleProps }: { scheduleProps: ScheduleProps
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
                                 <InputError message={errors.year_level_id} />
+                            </div>
+                            <div>
+                                <Label isRequired htmlFor='room_id'>Room</Label>
+                                <DefaultSelect defaultValue={data.room_id ?? ''} onValueChange={(e) => setData('room_id', e)} >
+                                    <DefaultSelect.Trigger>
+                                        <DefaultSelect.Value placeholder="Select a room" />
+                                    </DefaultSelect.Trigger>
+                                    <DefaultSelect.Content>
+                                        {scheduleProps.rooms && scheduleProps.rooms.map((room, index) => (
+                                            <DefaultSelect.Item key={index} value={String(room.id)}>
+                                             {room.name}
+                                            </DefaultSelect.Item>
+                                        ))}
+                                    </DefaultSelect.Content>
+                                </DefaultSelect>
+                                <InputError message={errors.room_id} />
                             </div>
                         </section>
 
