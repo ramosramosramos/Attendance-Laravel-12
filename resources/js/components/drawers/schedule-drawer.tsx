@@ -53,6 +53,9 @@ export function ScheduleDrawer({ schedule, ...props }: React.ComponentPropsWitho
                         <span>
                             <span className="text-"> Year level: {schedule.extendedProps.year_level_name} </span>
                         </span>
+                        <span>
+                            <span className="text-"> Room: {schedule.extendedProps.room_name} </span>
+                        </span>
 
                         <span>   <span>Start from :</span>
                             <span className="text-green-500">   {schedule.extendedProps.start_time} </span> - <span className="text-green-500"> {schedule.extendedProps.end_time}</span>
