@@ -17,13 +17,13 @@ class RoomController extends Controller
             return [
                 'id' => $room->id,
                 'name' => $room->name,
-                'updateURL' => route('year_levels.update', $room),
-                'deleteURL' => route('year_levels.destroy', $room),
+                'updateURL' => route('rooms.update', $room),
+                'deleteURL' => route('rooms.destroy', $room),
             ];
         });
 
-        return inertia('year-level/index', [
-            'year_levels' => $rooms,
+        return inertia('room/index', [
+            'rooms' => $rooms,
         ]);
     }
 
