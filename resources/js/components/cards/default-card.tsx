@@ -65,7 +65,7 @@ function ActionButtons({ updateURL, deleteURL, item, titleConfirm, descriptionCo
         router.post(deleteURL, {}, { preserveScroll: true })
     }
     return (
-        <CardFooter className="flex gap-5">
+        <CardFooter className="flex gap-5 justify-end">
 
             <DefaultFormDialog
                 title={'Edit '}
@@ -74,21 +74,23 @@ function ActionButtons({ updateURL, deleteURL, item, titleConfirm, descriptionCo
                 inputOptions={inputOptions}
                 formTypeValues={formTypeValues}
                 uri={updateURL}
-                messagesSuccess='Your item has been successfully updated.'
+                messagesSuccess='Successfully updated.'
                 variant={'outline'}
             >
-                <Edit2Icon /> Edit
+                {/* //edit */}
+              <Edit2Icon /> Edit
             </DefaultFormDialog>
 
-            <Button onClick={() => {
+            <Button  onClick={() => {
                 if (!is_confirmed) {
                     router.post(deleteURL, {}, { preserveScroll: true })
                 }
                 if (is_confirmed) {
                     setOpen(true)
                 }
-            }} variant={'destructive'} className="w-full">
-                <Trash2Icon /> Delete
+            }} variant={'destructive'} className="w-[max-content]" title="Delete">
+                {/* //delete */}
+                <Trash2Icon />
             </Button>
             {open && <ConfirmDialog isOpen={open} title={titleConfirm ? titleConfirm : '"Are you sure you want to delete this?"'}
                 description={descriptionConfirm ? descriptionConfirm : "This will be deleted permanently."}

@@ -66,7 +66,7 @@ export default function DefaultFormDialog({ children, title, description, button
                     </CompoundFormDialog.PrimaryButton>
                 </CompoundFormDialog.Form>
             </CompoundFormDialog>
-            <Button onClick={() => setOpenForm(true)} variant={variant} className={cn('w-full', className)}>
+            <Button onClick={() => setOpenForm(true)} variant={variant} className={cn('w-[max-content]', className)}>
                 {children}
             </Button>
         </>
