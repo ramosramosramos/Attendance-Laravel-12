@@ -35,6 +35,7 @@ class StoreScheduleRequest extends FormRequest
             'subject_id' => ['required', 'exists:subjects,id'],
             'section_id' => ['required', 'exists:sections,id'],
             'year_level_id' => ['required', 'exists:year_levels,id'],
+            'room_id' => ['required', 'exists:rooms,id'],
         ];
     }
 
@@ -45,11 +46,13 @@ class StoreScheduleRequest extends FormRequest
             'subject_id.required' => 'The subject field is required.',
             'section_id.required' => 'The section field is required.',
             'year_level_id.required' => 'The year level field is required.',
+            'room_id.required' => 'The room field is required.',
 
             'course_id.exists' => 'This course does not exists.',
             'subject_id.exists' => 'This subject does not exists.',
             'section_id.exists' => 'This section does not exists.',
             'year_level_id.exists' => 'This year level does not exists.',
+            'room_id.exists' => 'This room does not exists.',
 
         ];
     }
