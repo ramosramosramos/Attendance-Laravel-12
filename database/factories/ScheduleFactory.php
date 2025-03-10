@@ -23,10 +23,7 @@ class ScheduleFactory extends Factory
     {
         $number = fake()->numberBetween(1, 30);
         $date = fake()->randomElement([now()->addDays($number)]); // Generate a random date
-        $courses = Course::all();
-        $subjects = Subject::all();
-        $sections = Section::all();
-        $year_levels = YearLevel::all();
+
 
         return [
             'user_id' => fake()->randomElement([1, 2]),
@@ -34,6 +31,7 @@ class ScheduleFactory extends Factory
             'subject_id' => fake()->randomElement([1, 2, 3]),
             'section_id' => fake()->randomElement([1, 2, 3]),
             'year_level_id' => fake()->randomElement([1, 2, 3]),
+            'room_id' => fake()->randomElement([1, 2, 3]),
             // 'user_id' => fake()->randomElement([1, 2]),
             // 'course_name' => $courses->random()->name,
             // 'subject_name' => $subjects->random()->name,

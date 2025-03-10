@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(YearLevel::class, 'teacher_id');
     }
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'teacher_id');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Course;
+use App\Models\Room;
 use App\Models\Section;
 use App\Models\Subject;
 use App\Models\User;
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->foreignIdFor(Subject::class)->nullable()->constrained('subjects')->nullOnDelete();
             $table->foreignIdFor(Section::class)->nullable()->constrained('sections')->nullOnDelete();
             $table->foreignIdFor(YearLevel::class)->nullable()->constrained('year_levels')->nullOnDelete();
+            $table->foreignIdFor(Room::class)->nullable()->constrained('rooms')->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
