@@ -3,16 +3,18 @@
 namespace App\Observers;
 
 use App\Models\YearLevel;
+use App\Trait\UserTrait;
 
 class YearLevelObserver
 {
+    use UserTrait;
     /**
      * Handle the YearLevel "created" event.
      */
     public function created(YearLevel $yearLevel): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -21,7 +23,7 @@ class YearLevelObserver
     public function updated(YearLevel $yearLevel): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -30,7 +32,7 @@ class YearLevelObserver
     public function deleted(YearLevel $yearLevel): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -39,7 +41,7 @@ class YearLevelObserver
     public function restored(YearLevel $yearLevel): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -48,6 +50,6 @@ class YearLevelObserver
     public function forceDeleted(YearLevel $yearLevel): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 }

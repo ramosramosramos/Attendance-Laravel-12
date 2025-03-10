@@ -3,16 +3,19 @@
 namespace App\Observers;
 
 use App\Models\Subject;
+use App\Trait\UserTrait;
 
 class SubjectObserver
 {
+    use UserTrait;
     /**
      * Handle the Subject "created" event.
      */
+
     public function created(Subject $subject): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+      $this->forgetSharedProps();
     }
 
     /**
@@ -21,7 +24,7 @@ class SubjectObserver
     public function updated(Subject $subject): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+      $this->forgetSharedProps();
     }
 
     /**
@@ -30,7 +33,7 @@ class SubjectObserver
     public function deleted(Subject $subject): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+      $this->forgetSharedProps();
     }
 
     /**
@@ -39,7 +42,7 @@ class SubjectObserver
     public function restored(Subject $subject): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+      $this->forgetSharedProps();
     }
 
     /**
@@ -48,6 +51,6 @@ class SubjectObserver
     public function forceDeleted(Subject $subject): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+      $this->forgetSharedProps();
     }
 }

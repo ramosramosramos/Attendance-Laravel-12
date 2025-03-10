@@ -10,7 +10,6 @@ use App\Services\ScheduleService;
 use App\Trait\UserTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ScheduleController extends Controller
 {
@@ -32,9 +31,6 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-
-
-
         return inertia('schedule/create', [
             'scheduleProps' => $this->getSharedProps($this->user()),
         ]);
@@ -86,17 +82,4 @@ class ScheduleController extends Controller
         $this->authorize('delete', $schedule);
         $schedule->delete();
     }
-
-    // private function getSharedProps($this->user())
-    // {
-    //     return Cache::remember('sharedProps' . $this->user()->id, now()->addHours(24), function () {
-    //         return [
-    //             'courses' => $this->user()->courses()->select(['id', 'name'])->get(),
-    //             'subjects' => $this->user()->subjects()->select(['id', 'name'])->get(),
-    //             'sections' => $this->user()->sections()->select(['id', 'name'])->get(),
-    //             'year_levels' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
-    //             'rooms' => $this->user()->rooms()->select(['id', 'name'])->get(),
-    //         ];
-    //     });
-    // }
 }

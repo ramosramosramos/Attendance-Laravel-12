@@ -3,16 +3,18 @@
 namespace App\Observers;
 
 use App\Models\Course;
+use App\Trait\UserTrait;
 
 class CourseObserver
 {
+    use UserTrait;
     /**
      * Handle the Course "created" event.
      */
     public function created(Course $course): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -21,7 +23,7 @@ class CourseObserver
     public function updated(Course $course): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -30,7 +32,7 @@ class CourseObserver
     public function deleted(Course $course): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -39,7 +41,7 @@ class CourseObserver
     public function restored(Course $course): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -48,6 +50,6 @@ class CourseObserver
     public function forceDeleted(Course $course): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 }

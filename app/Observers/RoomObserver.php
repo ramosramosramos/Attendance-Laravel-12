@@ -3,16 +3,18 @@
 namespace App\Observers;
 
 use App\Models\Room;
+use App\Trait\UserTrait;
 
 class RoomObserver
 {
+    use UserTrait;
     /**
      * Handle the Room "created" event.
      */
     public function created(Room $room): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -21,7 +23,7 @@ class RoomObserver
     public function updated(Room $room): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -30,7 +32,7 @@ class RoomObserver
     public function deleted(Room $room): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -39,7 +41,7 @@ class RoomObserver
     public function restored(Room $room): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 
     /**
@@ -48,6 +50,6 @@ class RoomObserver
     public function forceDeleted(Room $room): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
-        cache()->forget('scheduleProps');
+        $this->forgetSharedProps();
     }
 }
