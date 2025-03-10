@@ -13,15 +13,18 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $rooms = $this->user()->rooms()->select(['id', 'name', 'teacher_id'])->get()->map(function ($room) {
+            return [
+                'id' => $room->id,
+                'name' => $room->name,
+                'updateURL' => route('year_levels.update', $room),
+                'deleteURL' => route('year_levels.destroy', $room),
+            ];
+        });
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return inertia('year-level/index', [
+            'year_levels' => $rooms,
+        ]);
     }
 
     /**
@@ -29,23 +32,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Room $room)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Room $room)
-    {
-        //
+        Room::create(array_merge($request->validated(), ['teacher_id' => $this->user()->id]));
     }
 
     /**
@@ -53,7 +40,8 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, Room $room)
     {
-        //
+        $this->authorize('update', $room);
+        $room->update($request->validated());
     }
 
     /**
@@ -61,6 +49,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $this->authorize('delete', $room);
+        $room->deleteOrFail();
     }
 }
