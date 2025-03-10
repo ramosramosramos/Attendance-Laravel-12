@@ -30,10 +30,10 @@ class ScheduleFactory extends Factory
 
         return [
             'user_id' => fake()->randomElement([1, 2]),
-            'course_id'=>fake()->randomElement([1, 2,3]),
-            'subject_id'=>fake()->randomElement([1, 2,3]),
-            'section_id'=>fake()->randomElement([1, 2,3]),
-            'year_level_id'=>fake()->randomElement([1, 2,3]),
+            'course_id' => fake()->randomElement([1, 2, 3]),
+            'subject_id' => fake()->randomElement([1, 2, 3]),
+            'section_id' => fake()->randomElement([1, 2, 3]),
+            'year_level_id' => fake()->randomElement([1, 2, 3]),
             // 'user_id' => fake()->randomElement([1, 2]),
             // 'course_name' => $courses->random()->name,
             // 'subject_name' => $subjects->random()->name,

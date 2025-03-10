@@ -12,6 +12,7 @@ class SectionObserver
     public function created(Section $section): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
+        cache()->forget('scheduleProps');
     }
 
     /**
@@ -20,6 +21,7 @@ class SectionObserver
     public function updated(Section $section): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
+        cache()->forget('scheduleProps');
     }
 
     /**
@@ -28,6 +30,7 @@ class SectionObserver
     public function deleted(Section $section): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
+        cache()->forget('scheduleProps');
     }
 
     /**
@@ -36,6 +39,7 @@ class SectionObserver
     public function restored(Section $section): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
+        cache()->forget('scheduleProps');
     }
 
     /**
@@ -44,5 +48,6 @@ class SectionObserver
     public function forceDeleted(Section $section): void
     {
         request()->session()->put('auth.password_confirmed_at', null);
+        cache()->forget('scheduleProps');
     }
 }

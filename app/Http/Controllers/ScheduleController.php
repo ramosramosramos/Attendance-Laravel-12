@@ -19,11 +19,11 @@ class ScheduleController extends Controller
     {
 
         $schedule = $this->user()->schedules()
-        ->with([
-            'course',
-            'subject',
-            'section',
-            'yearLevel',
+            ->with([
+                'course',
+                'subject',
+                'section',
+                'yearLevel',
             ])->select([
             'id',
             'course_id',
@@ -109,10 +109,10 @@ class ScheduleController extends Controller
     {
         return Cache::remember('scheduleProps', now()->addHours(24), function () {
             return [
-                'courses' => $this->user()->courses()->select(['id','name'])->get(),
-                'subjects' => $this->user()->subjects()->select(['id','name'])->get(),
-                'sections' => $this->user()->sections()->select(['id','name'])->get(),
-                'year_levels' => $this->user()->yearLevels()->select(['id','name'])->get(),
+                'courses' => $this->user()->courses()->select(['id', 'name'])->get(),
+                'subjects' => $this->user()->subjects()->select(['id', 'name'])->get(),
+                'sections' => $this->user()->sections()->select(['id', 'name'])->get(),
+                'year_levels' => $this->user()->yearLevels()->select(['id', 'name'])->get(),
             ];
         });
     }

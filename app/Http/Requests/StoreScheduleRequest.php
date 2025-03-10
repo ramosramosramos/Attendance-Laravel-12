@@ -38,18 +38,19 @@ class StoreScheduleRequest extends FormRequest
         ];
     }
 
-    public function messages(): array{
-    return [
-        'course_id.required' => 'The course field is required.',
-        'subject_id.required' => 'The subject field is required.',
-        'section_id.required' => 'The section field is required.',
-        'year_level_id.required' => 'The year level field is required.',
+    public function messages(): array
+    {
+        return [
+            'course_id.required' => 'The course field is required.',
+            'subject_id.required' => 'The subject field is required.',
+            'section_id.required' => 'The section field is required.',
+            'year_level_id.required' => 'The year level field is required.',
 
-        'course_id.exists' => 'This course does not exists.',
-        'subject_id.exists' => 'This subject does not exists.',
-        'section_id.exists' => 'This section does not exists.',
-        'year_level_id.exists' => 'This year level does not exists.',
+            'course_id.exists' => 'This course does not exists.',
+            'subject_id.exists' => 'This subject does not exists.',
+            'section_id.exists' => 'This section does not exists.',
+            'year_level_id.exists' => 'This year level does not exists.',
 
-    ];
+        ];
     }
 }
