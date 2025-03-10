@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/students', StudentController::class)->except(['update', 'destroy']);
     Route::post('students/{student}/update', [StudentController::class, 'update'])->name('students.update');
-    Route::post('students/{student}/destroy', [StudentController::class, 'destroy'])->name('students.destroy');
+    Route::post('students/{student}/destroy', [StudentController::class, 'destroy'])->name('students.destroy')->middleware('password.confirm');
 
     Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
     Route::post('courses/store', [CourseController::class, 'store'])->name('courses.store');

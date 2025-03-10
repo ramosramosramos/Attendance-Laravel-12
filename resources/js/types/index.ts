@@ -67,10 +67,11 @@ export interface Schedule {
 export interface Student{
     id: number;
     name:string;
-    course:string;
-    year_level:string;
-    created_at:string;
-
+    course_name:string;
+    year_level_name:string;
+    section_name:string;
+    editURL: string;
+    deleteURL: string;
     [key: string]: any;
 
 }
