@@ -31,11 +31,25 @@ class UpdateScheduleRequest extends FormRequest
             'start_time' => ['required', 'date', 'before:end_time'],
             'end_time' => ['required', 'date', 'after:start_time'],
             'date' => ['required', 'date'],
-            'course_name' => ['required', 'string'],
-            'subject_name' => ['required', 'string'],
-            'section_name' => ['required', 'string'],
-            'year_level_name' => ['required', 'string'],
+            'course_id' => ['required', 'exists:courses,id'],
+            'subject_id' => ['required', 'exists:subjects,id'],
+            'section_id' => ['required', 'exists:sections,id'],
+            'year_level_id' => ['required', 'exists:year_levels,id'],
         ];
+    }
 
+    public function messages(): array{
+    return [
+        'course_id.required' => 'The course field is required.',
+        'subject_id.required' => 'The subject field is required.',
+        'section_id.required' => 'The section field is required.',
+        'year_level_id.required' => 'The year level field is required.',
+
+        'course_id.exists' => 'This course does not exists.',
+        'subject_id.exists' => 'This subject does not exists.',
+        'section_id.exists' => 'This section does not exists.',
+        'year_level_id.exists' => 'This year level does not exists.',
+
+    ];
     }
 }

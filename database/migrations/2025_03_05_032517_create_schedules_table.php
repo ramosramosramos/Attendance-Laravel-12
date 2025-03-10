@@ -34,7 +34,7 @@ return new class extends Migration
             $table->foreignIdFor(Course::class)->constrained('courses')->cascadeOnDelete();
             $table->foreignIdFor(Subject::class)->constrained('subjects')->cascadeOnDelete();
             $table->foreignIdFor(Section::class)->constrained('sections')->cascadeOnDelete();
-            $table->foreignIdFor(YearLevel::class)->constrained('sections')->cascadeOnDelete();
+            $table->foreignIdFor(YearLevel::class)->constrained('year_levels')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

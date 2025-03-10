@@ -101,3 +101,22 @@ export interface ScheduleProps{
     sections: Section[];
     year_levels: YearLevel[];
 }
+
+
+
+export interface ScheduleForm{
+    title: string;
+    user_id: number;
+    description: string;
+    start_time: string;
+    end_time: string;
+    date: string;
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
+    course_id: string;
+    subject_id: string;
+    section_id: string;
+    year_level_id: string;
+    [key: string]: any;
+}

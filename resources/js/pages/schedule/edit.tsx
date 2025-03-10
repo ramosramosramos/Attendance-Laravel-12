@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
-import { Schedule, ScheduleProps, SharedData, type BreadcrumbItem } from '@/types';
+import { Schedule, ScheduleForm, ScheduleProps, SharedData, type BreadcrumbItem } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { toast } from 'sonner';
@@ -20,27 +20,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-interface FormEdit {
-    title: string;
-    user_id: number;
-    description: string;
-    start_time: string;
-    end_time: string;
-    date: string;
-    backgroundColor: string;
-    borderColor: string;
-    textColor: string;
-    course_name: string,
-    subject_name: string,
-    section_name: string,
-    year_level_name: string,
-    [key: string]: any;
-    // :Date;
-}
-export default function Edit({ schedule, scheduleProps }: {schedule:Schedule, scheduleProps: ScheduleProps }) {
+
+export default function Edit({ schedule, scheduleProps }: { schedule: Schedule, scheduleProps: ScheduleProps }) {
     const { user } = usePage<SharedData>().props.auth;
 
-    const { data, setData, post, processing, errors, reset, clearErrors } = useForm<FormEdit>({
+    const { data, setData, post, processing, errors, reset, clearErrors } = useForm<ScheduleForm>({
         title: schedule.title,
         user_id: user.id,
         description: schedule.description,
@@ -50,10 +34,10 @@ export default function Edit({ schedule, scheduleProps }: {schedule:Schedule, sc
         backgroundColor: schedule.backgroundColor,
         borderColor: schedule.borderColor,
         textColor: schedule.textColor,
-        course_name: schedule.course_name,
-        subject_name: schedule.subject_name,
-        section_name: schedule.section_name,
-        year_level_name: schedule.year_level_name,
+        course_id:String(schedule.course_id),
+        subject_id: String(schedule.subject_id),
+        section_id: String(schedule.section_id),
+        year_level_id: String(schedule.year_level_id),
     })
 
     const handleSubmit: FormEventHandler = (e) => {
@@ -122,68 +106,68 @@ export default function Edit({ schedule, scheduleProps }: {schedule:Schedule, sc
                             </div>
 
                             <div>
-                                <Label isRequired htmlFor='course_name'>Course</Label>
-                                <DefaultSelect defaultValue={data.course_name ?? ''} onValueChange={(e) => setData('course_name', e)} >
+                                <Label isRequired htmlFor='course_id'>Course</Label>
+                                <DefaultSelect defaultValue={data.course_id ?? ''} onValueChange={(e) => setData('course_id', e)} >
                                     <DefaultSelect.Trigger>
                                         <DefaultSelect.Value placeholder="Select a course" />
                                     </DefaultSelect.Trigger>
                                     <DefaultSelect.Content>
                                         {scheduleProps.courses && scheduleProps.courses.map((course, index) => (
-                                            <DefaultSelect.Item key={index} value={course.name}>
+                                            <DefaultSelect.Item key={index} value={String(course.id)}>
                                                 {course.name}
                                             </DefaultSelect.Item>
                                         ))}
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
-                                <InputError message={errors.course_name} />
+                                <InputError message={errors.course_id} />
                             </div>
                             <div>
-                                <Label isRequired htmlFor='subject_name'>Subject</Label>
-                                <DefaultSelect defaultValue={data.subject_name ?? ''} onValueChange={(e) => setData('subject_name', e)} >
+                                <Label isRequired htmlFor='subject_id'>Subject</Label>
+                                <DefaultSelect defaultValue={data.subject_id ?? ''} onValueChange={(e) => setData('subject_id', e)} >
                                     <DefaultSelect.Trigger>
                                         <DefaultSelect.Value placeholder="Select a subject" />
                                     </DefaultSelect.Trigger>
                                     <DefaultSelect.Content>
                                         {scheduleProps.subjects && scheduleProps.subjects.map((subject, index) => (
-                                            <DefaultSelect.Item key={index} value={subject.name}>
+                                            <DefaultSelect.Item key={index} value={String(subject.id)}>
                                                 {subject.name}
                                             </DefaultSelect.Item>
                                         ))}
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
-                                <InputError message={errors.subject_name} />
+                                <InputError message={errors.subject_id} />
                             </div>
                             <div>
-                                <Label isRequired htmlFor='section_name'>Section</Label>
-                                <DefaultSelect defaultValue={data.section_name ?? ''} onValueChange={(e) => setData('section_name', e)} >
+                                <Label isRequired htmlFor='section_id'>Section</Label>
+                                <DefaultSelect defaultValue={data.section_id ?? ''} onValueChange={(e) => setData('section_id', e)} >
                                     <DefaultSelect.Trigger>
                                         <DefaultSelect.Value placeholder="Select a section" />
                                     </DefaultSelect.Trigger>
                                     <DefaultSelect.Content>
                                         {scheduleProps.sections && scheduleProps.sections.map((section, index) => (
-                                            <DefaultSelect.Item key={index} value={section.name}>
+                                            <DefaultSelect.Item key={index} value={String(section.id)}>
                                                 {section.name}
                                             </DefaultSelect.Item>
                                         ))}
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
-                                <InputError message={errors.section_name} />
+                                <InputError message={errors.section_id} />
                             </div>
                             <div>
-                                <Label isRequired htmlFor='year_level_name'>Year level</Label>
-                                <DefaultSelect defaultValue={data.year_level_name ?? ''} onValueChange={(e) => setData('year_level_name', e)} >
+                                <Label isRequired htmlFor='year_level_id'>Year level</Label>
+                                <DefaultSelect defaultValue={data.year_level_id ?? ''} onValueChange={(e) => setData('year_level_id', e)} >
                                     <DefaultSelect.Trigger>
                                         <DefaultSelect.Value placeholder="Select a year level" />
                                     </DefaultSelect.Trigger>
                                     <DefaultSelect.Content>
                                         {scheduleProps.year_levels && scheduleProps.year_levels.map((year_level, index) => (
-                                            <DefaultSelect.Item key={index} value={year_level.name}>
+                                            <DefaultSelect.Item key={index} value={String(year_level.id)}>
                                                 {year_level.name}
                                             </DefaultSelect.Item>
                                         ))}
                                     </DefaultSelect.Content>
                                 </DefaultSelect>
-                                <InputError message={errors.year_level_name} />
+                                <InputError message={errors.year_level_id} />
                             </div>
                         </section>
 
