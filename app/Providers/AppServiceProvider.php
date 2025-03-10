@@ -9,6 +9,7 @@ use App\Models\Section;
 use App\Models\Subject;
 use App\Models\YearLevel;
 use App\Observers\CourseObserver;
+use App\Observers\RoomObserver;
 use App\Observers\ScheduleObserver;
 use App\Observers\SectionObserver;
 use App\Observers\SubjectObserver;
@@ -53,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         Subject::observe(SubjectObserver::class);
         Section::observe(SectionObserver::class);
         YearLevel::observe(YearLevelObserver::class);
+        Room::observe(RoomObserver::class);
 
     }
 }
