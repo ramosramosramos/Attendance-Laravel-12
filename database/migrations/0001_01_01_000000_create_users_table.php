@@ -64,6 +64,12 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        Schema::create('rooms', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete(); //
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -79,5 +85,6 @@ return new class extends Migration
         Schema::dropIfExists('subjects');
         Schema::dropIfExists('year_levels');
         Schema::dropIfExists('sections');
+        Schema::dropIfExists('rooms');
     }
 };

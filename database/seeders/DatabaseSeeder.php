@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             SectionSeeder::class,
             YearLevelSeeder::class,
+            RoomSeeder::class,
         ]);
         Schedule::factory(10)->createQuietly();
         Student::factory(10)->createQuietly();
