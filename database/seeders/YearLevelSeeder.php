@@ -33,7 +33,6 @@ class YearLevelSeeder extends Seeder
                 'name' => 'Third Year',
                 'teacher_id' => 1,
             ],
-            
 
         ]);
     }

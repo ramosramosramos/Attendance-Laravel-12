@@ -99,12 +99,11 @@ class ScheduleController extends Controller
         $schedule->delete();
     }
 
-
     private function getScheduleProps()
     {
-        return  Cache::remember('scheduleProps', now()->addHours(24), function () {
+        return Cache::remember('scheduleProps', now()->addHours(24), function () {
             return [
-                'courses' =>   $this->user()->courses()->select('name')->get(),
+                'courses' => $this->user()->courses()->select('name')->get(),
                 'subjects' => $this->user()->subjects()->select('name')->get(),
                 'sections' => $this->user()->sections()->select('name')->get(),
                 'year_levels' => $this->user()->yearLevels()->select('name')->get(),
