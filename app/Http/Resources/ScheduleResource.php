@@ -32,6 +32,7 @@ class ScheduleResource extends JsonResource
                 'subject_name' => $this->subject?->name ?? 'No subject selected or it has been deleted.',
                 'section_name' => $this->section?->name ?? 'No section selected or it has been deleted.',
                 'year_level_name' => $this->yearLevel?->name ?? 'No year level selected or it has been deleted.',
+                'room_name' => $this->room?->name ?? 'No room selected or it has been deleted.',
             ],
             'date' => $this->date,
         ];
