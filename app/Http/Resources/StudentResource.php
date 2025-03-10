@@ -20,9 +20,9 @@ class StudentResource extends JsonResource
             'name' => $this->name,
             'course_name' => $this->course?->name ?? ThenResponse::NO_COURSE,
             'section_name' => $this->section?->name ?? ThenResponse::NO_SECTION,
-            'year_level_name' => $this->yearLevel?->name?? ThenResponse::NO_YEAR_LEVEL,
-            'editURL' => route('students.edit',$this->id),
-            'deleteURL' => route('students.destroy',$this->id),
+            'year_level_name' => $this->yearLevel?->name ?? ThenResponse::NO_YEAR_LEVEL,
+            'editURL' => route('students.edit', parameters: $this->id),
+            'deleteURL' => route('students.destroy', $this->id),
         ];
     }
 }

@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function index()
     {
 
-        $students = $this->user()->students()->with(['course:id,name','section:id,name','yearLevel:id,name'])->select(
+        $students = $this->user()->students()->with(['course:id,name', 'section:id,name', 'yearLevel:id,name'])->select(
             [
                 'id',
                 'name',
@@ -73,6 +73,6 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
     }
 }

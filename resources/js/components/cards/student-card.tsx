@@ -14,9 +14,7 @@ import { useState } from "react"
 import { ConfirmDialog } from "../dialogs/confirm-dialog"
 import * as React from "react"
 import { router, usePage } from "@inertiajs/react"
-import { Auth, Course, SharedData } from "@/types"
-import DefaultFormDialog from "../forms/default-form-dialog"
-
+import {SharedData } from "@/types"
 type CardProps = React.ComponentProps<typeof Card>
 export function StudentCard({ children, className, ...props }: CardProps) {
     return (
@@ -64,6 +62,15 @@ function ActionButtons({ editURL, deleteURL, titleConfirm, descriptionConfirm }:
     return (
         <CardFooter className="flex gap-5 justify-end">
 
+            <Button  onClick={() => {
+                if (!is_confirmed) {
+                    router.post(editURL, {}, { preserveScroll: true })
+                }
+
+            }} variant={'outline'} className="w-[max-content]" title="Delete">
+                {/* //delete */}
+                <Edit2Icon/> Edit
+            </Button>
             <Button  onClick={() => {
                 if (!is_confirmed) {
                     router.post(deleteURL, {}, { preserveScroll: true })

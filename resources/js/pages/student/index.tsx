@@ -30,8 +30,17 @@ export default function Index({students}:{students:{data:Student[]}}) {
                                    {students.data.length > 0 && students.data.map((student) => (
                                        <StudentCard key={student.id}>
                                            <StudentCard.Header>
-                                               <StudentCard.Description>
+                                               <StudentCard.Title>
                                                    {student.name}
+                                               </StudentCard.Title>
+                                               <StudentCard.Description>
+                                                   {student.course_name}
+                                               </StudentCard.Description>
+                                               <StudentCard.Description>
+                                                 Section:  {student.section_name}
+                                               </StudentCard.Description>
+                                               <StudentCard.Description>
+                                                  {student.year_level_name}
                                                </StudentCard.Description>
                                            </StudentCard.Header>
                                         <StudentCard.ActionButtons editURL={student.editURL} deleteURL={student.deleteURL}/>
