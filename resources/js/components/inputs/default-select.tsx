@@ -48,7 +48,7 @@ function Value ({...props}:React.ComponentProps<typeof SelectValue>){
 
 function  Content({children,...props}:React.ComponentProps<typeof SelectContent>){
     return (
-        <SelectContent>
+        <SelectContent {...props}>
           {children}
         </SelectContent>
     )
